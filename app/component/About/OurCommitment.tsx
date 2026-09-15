@@ -22,7 +22,7 @@ const fadeUpVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
@@ -35,7 +35,7 @@ const cardLeftVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.75,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
@@ -48,7 +48,7 @@ const cardRightVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.75,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };

@@ -22,6 +22,8 @@ import {
   Phone
 } from 'lucide-react';
 
+const customEase = [0.16, 1, 0.3, 1] as const;
+
 const whyContactItems = [
   {
     icon: User,
@@ -101,7 +103,7 @@ export default function ContactHero() {
         <motion.div
           initial={{ scale: 1.1, opacity: 0.8 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.4, ease: customEase }}
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2000&auto=format&fit=crop')`,
@@ -121,7 +123,7 @@ export default function ContactHero() {
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4 md:mb-6"
             >
               Let’s Discuss Your <br />
@@ -133,7 +135,7 @@ export default function ContactHero() {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.4, ease: customEase }}
               className="text-slate-200 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl font-medium"
             >
               Planning a new WTP, upgrading an existing STP, or exploring water recycling solutions? Our expert team is ready to assist you.
@@ -494,4 +496,3 @@ export default function ContactHero() {
     </div>
   );
 }
-

@@ -4,6 +4,8 @@ import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const customEase = [0.16, 1, 0.3, 1] as const;
+
 const CallToAction = () => {
   return (
     <section className="relative w-full py-16 md:py-24 flex items-center overflow-hidden h-[400px] bg-no-repeat bg-center bg-cover"
@@ -21,7 +23,7 @@ const CallToAction = () => {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.1, ease: customEase }}
             className="text-3xl sm:text-4xl md:text-4xl font-bold mb-4 leading-tight"
           >
             Build a Sustainable<br /> Water Future
@@ -31,7 +33,7 @@ const CallToAction = () => {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
             className="text-sm md:text-base text-gray-200 mb-2 leading-relaxed"
           >
             Water reuse is no longer an option—it's a strategic investment for long-term business growth and environmental responsibility.
@@ -41,7 +43,7 @@ const CallToAction = () => {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
             className="text-sm md:text-base text-gray-200 mb-6 leading-relaxed"
           >
             Partner with Sowitech Engineering to implement reliable water treatment and recycling solutions tailored to your operations.
@@ -51,7 +53,7 @@ const CallToAction = () => {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.4, ease: customEase }}
             className="flex items-center gap-3 mb-6"
           >
             <Phone className="w-5 h-5 text-blue-300" />
@@ -64,7 +66,7 @@ const CallToAction = () => {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.5, ease: customEase }}
           >
             <a
               href="/contact"
@@ -81,4 +83,3 @@ const CallToAction = () => {
 };
 
 export default CallToAction;
-

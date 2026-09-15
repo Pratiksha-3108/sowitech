@@ -1,109 +1,143 @@
+'use client';
+
 import React from 'react';
+import Image from 'next/image';
 
-const BOTSection = () => {
+interface BenefitItem {
+  number: string;
+  title: string;
+  description: string;
+  tag: string;
+  image: string;
+}
+
+const benefits: BenefitItem[] = [
+  {
+    number: '01',
+    title: 'Zero Upfront Capital Investment',
+    description: 'Implement advanced water treatment infrastructure without significant upfront capital investment.',
+    tag: 'BOT BENEFIT',
+    image: '/Images/benefits/costs.jpg',
+  },
+  {
+    number: '02',
+    title: 'Design, Build, Operate & Maintain',
+    description: 'Sowitech manages the complete Design, Build, Operate & Maintain cycle.',
+    tag: 'BOT BENEFIT',
+    image: '/Images/home/untraflitration-plant.png',
+  },
+  {
+    number: '03',
+    title: 'Assured Long-Term Water Supply',
+    description: 'Ensure a reliable and consistent supply of treated water with long-term operational support.',
+    tag: 'BOT BENEFIT',
+    image: '/Images/benefits/freshwater.jpg',
+  },
+  {
+    number: '04',
+    title: 'Asset Transfer',
+    description: 'The treatment infrastructure is transferred to the client at the end of the agreement.',
+    tag: 'BOT BENEFIT',
+    image: '/Images/home/yaha_filtration_plant.jpg',
+  },
+  {
+    number: '05',
+    title: 'Improved Financial & ESG Performance',
+    description: 'Improve cash flow while strengthening water sustainability and ESG performance.',
+    tag: 'BOT BENEFIT',
+    image: '/Images/benefits/esg.png',
+  },
+];
+
+export default function BOTSection() {
   return (
-    <div id="projects" className="w-full py-16 md:py-24 bg-gradient-to-br from-[#f0f4f8] via-[#f8fafc] to-[#e2e8f0] font-sans overflow-hidden relative scroll-mt-20">
-      {/* Optional subtle light effect similar to the image's top left highlight */}
-      <div className="absolute top-0 left-0 w-1/2 h-full bg-white/40 blur-[120px] pointer-events-none"></div>
+    <section id="projects" className="w-full py-16 md:py-24 bg-white font-sans scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="border-b border-gray-200 pb-8 mb-12">
+          <div className="max-w-3xl">
+            {/* Pill Tag */}
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#ea580c]" />
+              <span className="text-xs font-bold tracking-widest text-[#0D427D] uppercase">
+                BENEFITS
+              </span>
+            </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col items-center text-center relative z-10">
-        {/* Title */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-[#111827] tracking-tight mb-6">
-          BOT (Build – Operate – Transfer) Model
-        </h2>
+            {/* Main Heading */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+              Benefits of the <span className="text-[#0D427D]">BOT Model</span>
+            </h2>
 
-        {/* Top Description */}
-        <p className="max-w-3xl text-gray-600 text-sm md:text-base mb-24 leading-relaxed font-medium">
-          Need a water treatment solution without significant capital investment? <br className="hidden md:block" />
-          Our BOT model allows businesses to implement advanced water treatment infrastructure with minimal financial burden.
-        </p>
-
-        {/* Process Flow */}
-        <div className="flex flex-col md:flex-row items-center justify-center w-full gap-4 md:gap-8 lg:gap-12 mb-24">
-          <div className="text-base md:text-lg font-medium text-[#111827] whitespace-nowrap">
-            Zero CapEx
-          </div>
-
-          {/* Arrow */}
-          <div className="hidden md:flex text-gray-400 items-center">
-            <svg width="60" height="24" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 12H58M58 12L48 2M58 12L48 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="md:hidden text-gray-400 my-2">
-            <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 0V38M12 38L2 28M12 38L22 28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-
-          <div className="text-base md:text-lg font-medium text-[#111827] whitespace-nowrap">
-            Design & Build
-          </div>
-
-          {/* Arrow */}
-          <div className="hidden md:flex text-gray-400 items-center">
-            <svg width="60" height="24" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 12H58M58 12L48 2M58 12L48 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="md:hidden text-gray-400 my-2">
-            <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 0V38M12 38L2 28M12 38L22 28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-
-          <div className="text-base md:text-lg font-medium text-[#111827] whitespace-nowrap">
-            Operate & Maintain
-          </div>
-
-          {/* Arrow */}
-          <div className="hidden md:flex text-gray-400 items-center">
-            <svg width="60" height="24" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 12H58M58 12L48 2M58 12L48 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="md:hidden text-gray-400 my-2">
-            <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 0V38M12 38L2 28M12 38L22 28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-
-          <div className="text-base md:text-lg font-medium text-[#111827] whitespace-nowrap">
-            Asset Transfer
+            {/* Subtitle */}
+            <p className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed font-normal">
+              Implement advanced water treatment infrastructure with minimal upfront capital investment and a flexible, low-financial-burden model.
+            </p>
           </div>
         </div>
 
-        {/* Benefits Section */}
-        <div className="w-full max-w-5xl mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10">
-          {[
-            "Zero upfront capital investment",
-            "Assured long-term treated water supply",
-            "Improved cash flow and metrics",
-            "Asset transfer at agreement end"
-          ].map((benefit, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center group">
-              {/* Hover wrapper */}
-              <div className="mb-6 transition-transform duration-500 group-hover:-translate-y-2">
-                {/* The actual drop shape */}
-                <div className="relative flex-shrink-0 w-12 h-12 flex items-center justify-center text-white bg-gradient-to-br from-blue-400 to-blue-600 shadow-md"
-                  style={{ borderRadius: "0 50% 50% 50%", transform: "rotate(45deg)" }}>
-                  {/* Un-rotate the icon inside so it stands upright */}
-                  <div style={{ transform: "rotate(-45deg)" }}>
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+        {/* Sticky Cascading Cards Container (Progressive Top Spacing) */}
+        <div className="relative flex flex-col gap-6 pb-24">
+          {benefits.map((benefit, idx) => (
+            <div
+              key={benefit.number}
+              className="sticky bg-white border border-gray-200/90 rounded-2xl shadow-lg p-5 sm:p-7 md:p-8 transition-all duration-300 overflow-hidden"
+              style={{
+                top: `calc(85px + ${idx * 75}px)`,
+                zIndex: idx + 1,
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-center">
+                
+                {/* LEFT: Card Number */}
+                <div className="hidden md:flex md:col-span-2 items-center justify-center select-none">
+                  <span className="font-mono text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#0D427D] tracking-tight select-none">
+                    {benefit.number}
+                  </span>
+                </div>
+
+                {/* MIDDLE: Benefit Image (Sharp Corners) */}
+                <div className="md:col-span-5 flex items-center justify-center">
+                  <div className="relative w-full aspect-[16/10] max-w-[340px] rounded-none overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+                    <Image
+                      src={benefit.image}
+                      alt={benefit.title}
+                      fill
+                      className="object-cover object-center"
+                    />
+                    {/* Mobile number overlay */}
+                    <div className="md:hidden absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-xs font-mono font-bold text-[#0D427D] shadow-sm">
+                      {benefit.number}
+                    </div>
                   </div>
                 </div>
+
+                {/* RIGHT: Benefit Eyebrow, Title and Description */}
+                <div className="md:col-span-5 flex flex-col justify-center text-left">
+                  <div className="mb-1.5">
+                    <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-[#0D427D] uppercase">
+                      {benefit.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 tracking-tight uppercase leading-[1.25] mb-2">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-[13px] md:text-sm text-gray-600 leading-relaxed font-normal">
+                    {benefit.description}
+                  </p>
+                </div>
+
               </div>
-              <span className="text-sm md:text-base font-medium text-gray-700 leading-snug">
-                {benefit}
-              </span>
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default BOTSection;
+      </div>
+    </section>
+  );
+}
+
+

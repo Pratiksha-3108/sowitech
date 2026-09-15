@@ -13,8 +13,8 @@
   --color-sowitech-sky: #38BDF8;
   --color-sowitech-cyan: #22d3ee;
   --color-sowitech-amber: #FAAD1B;
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-manrope);
+  --font-sans: var(--font-geist), var(--font-inter);
+  --font-heading: var(--font-geist), var(--font-manrope);
   --font-geist: var(--font-geist);
 }
 
@@ -235,7 +235,7 @@ body {
   background: #0f172a;
   color: #f8fafc;
   overflow-x: hidden;
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-geist), var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
 h1,
@@ -244,5 +244,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-manrope), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-geist), var(--font-manrope), system-ui, -apple-system, sans-serif;
 }

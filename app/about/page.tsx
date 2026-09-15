@@ -19,7 +19,7 @@ export default function AboutPage() {
       <AboutHero />
       <WhoWeAre />
       <MissionVision />
-      <WhatWeDo />
+      {/* <WhatWeDo /> */}
       <WhyChooseSowitech />
       <TechnologyPartner />
       <OurCommitment />

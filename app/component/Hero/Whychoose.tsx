@@ -6,6 +6,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Droplets, Leaf, Briefcase } from 'lucide-react';
 
+const customEase = [0.16, 1, 0.3, 1] as const;
+
 const features = [
   {
     title: 'Industry-Focused Engineering',
@@ -57,7 +59,7 @@ const WhyChoose = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: customEase }}
             className="max-w-2xl"
           >
             {/* Label with #0D427D primary accent bar */}
@@ -79,7 +81,7 @@ const WhyChoose = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0.2, ease: customEase }}
             className="flex-shrink-0"
           >
             <Link
@@ -102,7 +104,7 @@ const WhyChoose = () => {
         </div>
 
         {/* BOTTOM: Feature cards bar */}
-        <div className="px-0 pb-0">
+        <div className="px-[50px] pb-[50px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, i) => {
               const Icon = feature.icon;
@@ -112,7 +114,7 @@ const WhyChoose = () => {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease: customEase }}
                   className="group flex flex-col gap-3 px-8 py-8 border-t border-l border-white/20 hover:border-[#0D427D] transition-all duration-300 cursor-default relative overflow-hidden"
                   style={{ backgroundColor: 'rgba(13, 30, 55, 0.35)', backdropFilter: 'blur(12px)' }}
                 >
@@ -151,4 +153,3 @@ const WhyChoose = () => {
 };
 
 export default WhyChoose;
-

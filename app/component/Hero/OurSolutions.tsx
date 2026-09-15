@@ -3,8 +3,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowRight, Droplets, Filter, RefreshCw, Settings } from 'lucide-react';
+
+const customEase = [0.16, 1, 0.3, 1] as const;
 
 const solutions = [
   {
@@ -57,12 +59,12 @@ const solutions = [
   },
 ];
 
-const fadeUpVariants = {
+const fadeUpVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.65, ease: customEase },
   },
 };
 
@@ -142,7 +144,7 @@ export default function OurSolutions() {
                 initial={{ scale: 1.12, opacity: 0 }}
                 animate={{ scale: 1.0, opacity: 1 }}
                 exit={{ scale: 0.96, opacity: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.7, ease: customEase }}
                 className="absolute inset-0"
               >
                 <Image
@@ -157,7 +159,6 @@ export default function OurSolutions() {
               </motion.div>
             </AnimatePresence>
           </div>
-
 
         </div>
 

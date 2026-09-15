@@ -1,223 +1,155 @@
-﻿'use client';
+'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Cpu, Sliders, Headphones, Leaf, Sparkles } from 'lucide-react';
 
-/* ── Reasons data ─────────────────────────────────────── */
+/* ── Reasons data with high quality background images ─────── */
 const reasons = [
   {
     number: '01',
     title: 'Technical Expertise',
     description:
-      'Experienced engineering team delivering practical, efficient, and field-proven water treatment solutions across diverse industrial sectors.',
+      'Experienced engineering team delivering practical and efficient water treatment solutions.',
+    icon: Cpu,
+    image: '/Images/home/untraflitration-plant.png',
   },
   {
     number: '02',
     title: 'Customized Solutions',
     description:
-      'Every project is designed according to your water quality, usage patterns, and specific operational requirements — no one-size-fits-all approach.',
+      'Every project is designed according to water quality, usage patterns, and operational requirements.',
+    icon: Sliders,
+    image: '/Images/home/yaha_filtration_plant.jpg',
   },
   {
     number: '03',
     title: 'End-to-End Support',
     description:
-      'From consultation and design to installation, commissioning, and ongoing maintenance — we stay with you through the full lifecycle.',
+      'From consultation and design to installation, commissioning, and maintenance.',
+    icon: Headphones,
+    image: '/Images/benefits/freshwater.jpg',
   },
   {
     number: '04',
     title: 'Sustainability Focus',
     description:
-      'Helping organizations achieve water conservation goals, ESG objectives, and measurable operational efficiency through responsible engineering.',
+      'Helping organizations achieve water conservation, ESG objectives, and operational efficiency.',
+    icon: Leaf,
+    image: '/Images/benefits/esg.png',
   },
 ];
 
-/* ── Animated reason row ─────────────────────────────── */
-function ReasonRow({
-  item,
-  index,
-}: {
-  item: (typeof reasons)[0];
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{
-        duration: 0.65,
-        ease: [0.16, 1, 0.3, 1],
-        delay: index * 0.08,
-      }}
-      className="group flex flex-col gap-2 py-7 border-b last:border-b-0"
-      style={{ borderColor: 'rgba(13,66,125,0.1)' }}
-    >
-      {/* Number — title row */}
-      <div className="flex items-baseline gap-4">
-        <span
-          className="text-sm font-extrabold tabular-nums shrink-0"
-          style={{ color: '#7AAED6' }}
-        >
-          {item.number}
-        </span>
-        <span
-          className="text-xl sm:text-2xl md:text-[1.6rem] font-extrabold leading-snug tracking-tight"
-          style={{ color: '#0A1E3D' }}
-        >
-          — {item.title}
-        </span>
-      </div>
-
-      {/* Description */}
-      <p
-        className="text-sm sm:text-base leading-relaxed pl-9"
-        style={{ color: '#3D5A7A' }}
-      >
-        {item.description}
-      </p>
-    </motion.div>
-  );
-}
-
-/* ── Main section ─────────────────────────────────────── */
 export default function WhyChooseSowitech() {
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Subtle parallax on the image
-  const imageY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
-
   return (
     <section
-      className="w-full font-sans relative overflow-hidden"
+      id="why-choose-sowitech"
+      className="w-full font-sans relative overflow-hidden py-14 md:py-20"
       style={{ backgroundColor: '#F2F8FF' }}
     >
-      {/* Background orbs */}
+      {/* Background glowing orbs */}
       <div
         className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[160px] pointer-events-none"
-        style={{ backgroundColor: 'rgba(13,66,125,0.07)' }}
+        style={{ backgroundColor: 'rgba(13,66,125,0.06)' }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[130px] pointer-events-none"
-        style={{ backgroundColor: 'rgba(122,174,214,0.09)' }}
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none"
+        style={{ backgroundColor: 'rgba(122,174,214,0.08)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-14 lg:gap-20 items-start">
-
-          {/* ── LEFT: Content ─────────────────────── */}
-          <div className="flex-1 min-w-0">
-
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-extrabold tracking-[0.2em] uppercase mb-7 border"
-              style={{
-                backgroundColor: 'rgba(13,66,125,0.07)',
-                borderColor: 'rgba(13,66,125,0.15)',
-                color: '#0D427D',
-              }}
-            >
-              Our Approach
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.08 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-10"
-              style={{ color: '#0A1E3D' }}
-            >
-              A Better Way to Manage Water,{' '}
-              <br className="hidden sm:inline" />
-              <span style={{ color: '#0D427D' }}>From Start to Finish.</span>
-            </motion.h2>
-
-            {/* Reason rows */}
-            <div>
-              {reasons.map((item, i) => (
-                <ReasonRow key={item.number} item={item} index={i} />
-              ))}
-            </div>
-
-          </div>
-
-          {/* ── RIGHT: Sticky image ────────────────── */}
-          <div
-            ref={imageRef}
-            className="lg:w-[420px] xl:w-[460px] shrink-0 lg:sticky lg:top-24"
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
+          {/* Eyebrow Tag */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-extrabold tracking-[0.22em] uppercase mb-4 border"
+            style={{
+              backgroundColor: 'rgba(13,66,125,0.07)',
+              borderColor: 'rgba(13,66,125,0.15)',
+              color: '#0D427D',
+            }}
           >
-            <div
-              className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden"
-              style={{
-                boxShadow: '0 24px 64px rgba(13,66,125,0.18)',
-              }}
-            >
-              {/* Parallax image */}
+            <Sparkles className="w-3.5 h-3.5" />
+            Why Choose Us
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.15]"
+            style={{ color: '#0A1E3D' }}
+          >
+            Engineering Smarter <span style={{ color: '#0D427D' }}>Water Solutions</span>
+          </motion.h2>
+        </div>
+
+        {/* 4 Sleek Cards Grid with Bottom-Left to Top-Right Hover Image Reveal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {reasons.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
               <motion.div
-                style={{ y: imageY }}
-                className="absolute inset-[-8%] w-[116%] h-[116%]"
-              >
-                <Image
-                  src="/Images/home/untraflitration-plant.png"
-                  alt="Why Choose Sowitech — Water Treatment Plant"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 460px"
-                  priority
-                />
-              </motion.div>
-
-              {/* Gradient overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'linear-gradient(to bottom, rgba(13,66,125,0.25) 0%, transparent 40%, rgba(10,30,61,0.6) 100%)',
-                }}
-              />
-
-              {/* Top dot badge */}
-              <div
-                className="absolute top-5 left-5 w-9 h-9 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: '#0D427D' }}
-              >
-                <div className="w-2.5 h-2.5 rounded-full bg-white" />
-              </div>
-
-              {/* Bottom label */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                key={item.number}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 p-6"
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 h-[220px] sm:h-[240px] p-6 flex flex-col justify-between cursor-pointer"
               >
-                <p
-                  className="text-white text-lg font-bold leading-snug"
-                >
-                  Why Businesses Choose Sowitech
-                </p>
-                <p
-                  className="text-sm mt-1"
-                  style={{ color: 'rgba(255,255,255,0.65)' }}
-                >
-                  Proven water engineering excellence
-                </p>
-              </motion.div>
-            </div>
-          </div>
+                {/* ── Background Image & Overlay (Opens from bottom-left to top-right) ── */}
+                <div className="absolute inset-0 [clip-path:circle(0%_at_0%_100%)] group-hover:[clip-path:circle(160%_at_0%_100%)] transition-all duration-700 ease-out pointer-events-none z-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-[#0D427D]/35 to-black/20" />
+                </div>
 
+                {/* ── Status Indicator Dot ── */}
+                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_8px_rgba(52,211,153,0.9)] z-10" />
+
+                {/* ── Foreground Content ── */}
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  {/* Icon Container */}
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:bg-white/20 group-hover:text-white group-hover:backdrop-blur-md"
+                    style={{
+                      backgroundColor: 'rgba(13,66,125,0.06)',
+                      color: '#0D427D',
+                    }}
+                  >
+                    <IconComponent className="w-5 h-5 stroke-[1.8]" />
+                  </div>
+
+                  {/* Title & Description — Black initially, White on Hover */}
+                  <div className="mt-auto">
+                    <h3 className="text-base sm:text-lg font-bold mb-1.5 text-black group-hover:text-white transition-colors duration-500 leading-snug drop-shadow-sm">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-[13px] leading-normal text-black/80 group-hover:text-white transition-colors duration-500 font-normal drop-shadow-sm line-clamp-3">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -2,134 +2,151 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "WTP", href: "/#wtp" },
-  { name: "TTP", href: "/#ttp" },
-  { name: "Water Recycling", href: "/#water-recycling" },
-  { name: "YAHA Technology", href: "/about#yaha-technology" },
+  { name: "About", href: "/about" },
+  { name: "Solutions", href: "/#solutions" },
   { name: "Industries", href: "/#industries" },
-  { name: "Projects", href: "/#projects" },
   { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full py-4 sm:py-5 px-4 sm:px-6 lg:px-8 transition-all duration-300 pointer-events-none">
-      <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-4">
+  const isActiveFn = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return false;
+    return pathname === href || (pathname?.startsWith(href) && href !== "/");
+  };
 
-        {/* Logo Section (Left) */}
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white transition-all duration-300 ${
+        isScrolled
+          ? "shadow-[0_2px_20px_rgba(13,66,125,0.10)] py-2 border-b border-slate-100"
+          : "py-3 border-b border-slate-100/60"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
+
+        {/* ── Logo ── */}
         <a
           href="/"
-          className={`pointer-events-auto flex items-center group px-3.5 py-1.5 rounded-2xl transition-all duration-300 ${
-            isScrolled
-              ? "bg-white/90 backdrop-blur-md shadow-md border border-white/20"
-              : "bg-white/85 backdrop-blur-md shadow-lg border border-white/30 hover:bg-white"
-          }`}
+          className="flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.03]"
+          aria-label="Sowitech Home"
         >
           <Image
-            src="/assets/homelogo.png"
-            alt="SOWITECH Engineering Pvt. Ltd."
+            src="/assets/logo_bgremove.png"
+            alt="Sowitech Engineering Pvt. Ltd."
             width={160}
-            height={48}
-            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            height={50}
+            className="h-12 sm:h-14 w-auto object-contain"
             priority
           />
         </a>
 
-        {/* Center Floating Translucent Glass Capsule Nav */}
-        <nav
-          className={`pointer-events-auto hidden lg:flex items-center gap-1.5 xl:gap-3 px-5 py-2 rounded-full border transition-all duration-300 shadow-xl ${
-            isScrolled
-              ? "bg-[#0D427D]/90 backdrop-blur-xl border-white/15 text-white"
-              : "bg-white/10 backdrop-blur-md border-white/20 text-white"
-          }`}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xs xl:text-sm font-medium hover:text-cyan-300 transition-colors whitespace-nowrap px-2.5 py-1 rounded-full hover:bg-white/10 relative group"
-            >
-              {link.name}
-            </a>
-          ))}
+        {/* ── Desktop Nav Links ── */}
+        <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+          {navLinks.map((link) => {
+            const active = isActiveFn(link.href);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg ${
+                  active
+                    ? "text-[#0D427D]"
+                    : "text-[#2d3748] hover:text-[#0D427D]"
+                }`}
+              >
+                {link.name}
+                {/* animated orange underline */}
+                <span
+                  className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+              </a>
+            );
+          })}
         </nav>
 
-        {/* Right CTA Button (Pill Style) */}
-        <div className="pointer-events-auto hidden sm:flex items-center shrink-0">
+        {/* ── Desktop CTA ── */}
+        <div className="hidden lg:flex items-center shrink-0">
           <a
             href="/contact"
-            className="group flex items-center gap-2 bg-white hover:bg-slate-100 text-[#0D427D] px-5 py-2.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+            id="navbar-enquiry-cta"
+            className="group flex items-center gap-2 bg-[#F39A1E] hover:bg-[#e08b12] text-white px-5 py-2.5 rounded-full font-bold text-[12px] tracking-wider uppercase shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
           >
-            <span className="font-bold text-[11px] xl:text-xs tracking-wider uppercase whitespace-nowrap">
-              REQUEST A WATER AUDIT
-            </span>
-            <span className="w-6 h-6 rounded-full bg-[#0D427D] text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
-              <ArrowUpRight className="w-3.5 h-3.5" />
+            <span>Enquiry Now!</span>
+            <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+              <ArrowUpRight className="w-3 h-3" />
             </span>
           </a>
         </div>
 
-        {/* Mobile / Tablet Menu Button */}
-        <div className="pointer-events-auto lg:hidden flex items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2.5 text-white bg-white/15 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/25 transition-colors shadow-lg"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        {/* ── Mobile Hamburger ── */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden p-2 text-[#173247] hover:bg-slate-100 rounded-xl transition-colors"
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
 
-      {/* Mobile Dropdown Navigation */}
-      {isMenuOpen && (
-        <div className="pointer-events-auto lg:hidden mt-3 max-w-md mx-auto bg-[#0D427D]/95 backdrop-blur-2xl border border-white/15 rounded-3xl p-6 shadow-2xl space-y-2 max-h-[80vh] overflow-y-auto">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="block text-base font-medium text-white hover:text-cyan-300 py-2 border-b border-white/10 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="pt-4 flex items-center gap-2">
+      {/* ── Mobile Dropdown ── */}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="bg-white border-t border-slate-100 px-6 py-5 shadow-xl space-y-1">
+          {navLinks.map((link) => {
+            const active = isActiveFn(link.href);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex items-center justify-between py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
+                  active
+                    ? "text-[#0D427D] bg-blue-50"
+                    : "text-[#2d3748] hover:text-[#0D427D] hover:bg-slate-50"
+                }`}
+              >
+                <span>{link.name}</span>
+                {active && <span className="w-2 h-2 rounded-full bg-[#F39A1E]" />}
+              </a>
+            );
+          })}
+          <div className="pt-3">
             <a
               href="/contact"
-              className="flex-1 text-center bg-white text-[#0D427D] py-3 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-slate-100 transition-colors"
               onClick={() => setIsMenuOpen(false)}
+              className="block w-full text-center bg-[#F39A1E] hover:bg-[#e08b12] text-white py-3 rounded-full font-bold text-[13px] uppercase tracking-wider shadow-md transition-all"
             >
-              REQUEST A WATER AUDIT
+              Enquiry Now!
             </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
 
 export default Navbar;
-
-
-

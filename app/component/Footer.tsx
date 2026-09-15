@@ -21,11 +21,11 @@ export default function Footer() {
             <a href="/" className="inline-block mb-6 w-fit">
               <div className="bg-white p-2.5 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                 <Image
-                  src="/assets/homelogo.png"
+                  src="/assets/logo_bgremove.png"
                   alt="SOWITECH Engineering Pvt. Ltd."
-                  width={180}
-                  height={180}
-                  className="h-20 md:h-24 w-auto object-contain"
+                  width={200}
+                  height={200}
+                  className="h-24 md:h-28 w-auto object-contain"
                 />
               </div>
             </a>
