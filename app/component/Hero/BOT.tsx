@@ -51,7 +51,7 @@ const benefits: BenefitItem[] = [
 
 export default function BOTSection() {
   return (
-    <section id="projects" className="w-full py-16 md:py-24 bg-white font-sans scroll-mt-20">
+    <section id="projects" className="w-full py-16 md:py-24 bg-[#F2F8FF] font-sans scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}

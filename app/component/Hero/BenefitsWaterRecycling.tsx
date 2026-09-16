@@ -18,7 +18,7 @@ const benefits = [
 
 const BenefitsWaterRecycling = () => {
   return (
-    <section id="water-recycling" className="w-full bg-white font-sans scroll-mt-20">
+    <section id="water-recycling" className="w-full bg-[#F2F8FF] font-sans scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col lg:flex-row-reverse lg:gap-16">
 

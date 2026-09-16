@@ -3,7 +3,7 @@ import React from "react";
 
 const WaterSolution = () => {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-[#F2F8FF] py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center gap-12">
         {/* Text Content */}
         <div className="flex-1 space-y-4">
