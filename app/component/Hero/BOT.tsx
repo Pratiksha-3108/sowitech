@@ -53,7 +53,7 @@ export default function BOTSection() {
   return (
     <section id="projects" className="w-full py-16 md:py-24 bg-white font-sans scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="border-b border-gray-200 pb-8 mb-12">
           <div className="max-w-3xl">
@@ -79,60 +79,64 @@ export default function BOTSection() {
 
         {/* Sticky Cascading Cards Container (Progressive Top Spacing) */}
         <div className="relative flex flex-col gap-6 pb-24">
-          {benefits.map((benefit, idx) => (
-            <div
-              key={benefit.number}
-              className="sticky bg-white border border-gray-200/90 rounded-2xl shadow-lg p-5 sm:p-7 md:p-8 transition-all duration-300 overflow-hidden"
-              style={{
-                top: `calc(85px + ${idx * 75}px)`,
-                zIndex: idx + 1,
-              }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-center">
-                
-                {/* LEFT: Card Number */}
-                <div className="hidden md:flex md:col-span-2 items-center justify-center select-none">
-                  <span className="font-mono text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#0D427D] tracking-tight select-none">
-                    {benefit.number}
-                  </span>
-                </div>
+          {benefits.map((benefit, idx) => {
+            const isEven = idx % 2 === 0;
+            return (
+              <div
+                key={benefit.number}
+                className="sticky bg-white border border-gray-200/90 rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 transition-all duration-300 overflow-hidden"
+                style={{
+                  top: '96px',
+                  zIndex: idx + 1,
+                }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-center">
 
-                {/* MIDDLE: Benefit Image (Sharp Corners) */}
-                <div className="md:col-span-5 flex items-center justify-center">
-                  <div className="relative w-full aspect-[16/10] max-w-[340px] rounded-none overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
-                    <Image
-                      src={benefit.image}
-                      alt={benefit.title}
-                      fill
-                      className="object-cover object-center"
-                    />
-                    {/* Mobile number overlay */}
-                    <div className="md:hidden absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-xs font-mono font-bold text-[#0D427D] shadow-sm">
-                      {benefit.number}
+                  {/* Benefit Image with Hover Slide Effect */}
+                  <div className={`md:col-span-7 flex items-center justify-center ${isEven ? 'order-1 md:order-1' : 'order-1 md:order-2'}`}>
+                    <div className="relative w-full aspect-[16/10] max-w-[580px] rounded-xl overflow-hidden border border-gray-200/80 bg-gray-100 shadow-sm group cursor-pointer">
+                      <div className="w-[200%] h-full flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
+                        <div className="w-1/2 h-full relative">
+                          <Image
+                            src={benefit.image}
+                            alt={benefit.title}
+                            fill
+                            className="object-cover object-center"
+                          />
+                        </div>
+                        <div className="w-1/2 h-full relative">
+                          <Image
+                            src={benefit.image}
+                            alt={benefit.title}
+                            fill
+                            className="object-cover object-center"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* RIGHT: Benefit Eyebrow, Title and Description */}
-                <div className="md:col-span-5 flex flex-col justify-center text-left">
-                  <div className="mb-1.5">
-                    <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-[#0D427D] uppercase">
-                      {benefit.tag}
-                    </span>
+                  {/* Benefit Eyebrow, Title and Description */}
+                  <div className={`md:col-span-5 flex flex-col justify-center text-left ${isEven ? 'order-2 md:order-2' : 'order-2 md:order-1'}`}>
+                    <div className="mb-2">
+                      <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-[#0D427D] uppercase">
+                        {benefit.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-gray-900 tracking-tight uppercase leading-snug mb-3">
+                      {benefit.title}
+                    </h3>
+
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed font-normal text-justify">
+                      {benefit.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 tracking-tight uppercase leading-[1.25] mb-2">
-                    {benefit.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-[13px] md:text-sm text-gray-600 leading-relaxed font-normal">
-                    {benefit.description}
-                  </p>
                 </div>
-
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

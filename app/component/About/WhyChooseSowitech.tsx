@@ -3,16 +3,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Cpu, Sliders, Headphones, Leaf, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
-/* ── Reasons data with high quality background images ─────── */
+/* ── Reasons data with high quality background images & custom PNG icons ─────── */
 const reasons = [
   {
     number: '01',
     title: 'Technical Expertise',
     description:
       'Experienced engineering team delivering practical and efficient water treatment solutions.',
-    icon: Cpu,
+    icon: '/assets/icon1.png',
     image: '/Images/home/untraflitration-plant.png',
   },
   {
@@ -20,7 +20,7 @@ const reasons = [
     title: 'Customized Solutions',
     description:
       'Every project is designed according to water quality, usage patterns, and operational requirements.',
-    icon: Sliders,
+    icon: '/assets/icon3.png',
     image: '/Images/home/yaha_filtration_plant.jpg',
   },
   {
@@ -28,7 +28,7 @@ const reasons = [
     title: 'End-to-End Support',
     description:
       'From consultation and design to installation, commissioning, and maintenance.',
-    icon: Headphones,
+    icon: '/assets/icon4.png',
     image: '/Images/benefits/freshwater.jpg',
   },
   {
@@ -36,7 +36,7 @@ const reasons = [
     title: 'Sustainability Focus',
     description:
       'Helping organizations achieve water conservation, ESG objectives, and operational efficiency.',
-    icon: Leaf,
+    icon: '/assets/icon44.png',
     image: '/Images/benefits/esg.png',
   },
 ];
@@ -94,7 +94,6 @@ export default function WhyChooseSowitech() {
         {/* 4 Sleek Cards Grid with Bottom-Left to Top-Right Hover Image Reveal */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {reasons.map((item, index) => {
-            const IconComponent = item.icon;
             return (
               <motion.div
                 key={item.number}
@@ -125,15 +124,20 @@ export default function WhyChooseSowitech() {
 
                 {/* ── Foreground Content ── */}
                 <div className="relative z-10 flex flex-col h-full justify-between">
-                  {/* Icon Container */}
+                  {/* Custom Icon Container */}
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:bg-white/20 group-hover:text-white group-hover:backdrop-blur-md"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center p-2 transition-all duration-500 group-hover:bg-white/20 group-hover:backdrop-blur-md"
                     style={{
                       backgroundColor: 'rgba(13,66,125,0.06)',
-                      color: '#0D427D',
                     }}
                   >
-                    <IconComponent className="w-5 h-5 stroke-[1.8]" />
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={24}
+                      height={24}
+                      className="w-6 h-6 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-500"
+                    />
                   </div>
 
                   {/* Title & Description — Black initially, White on Hover */}
@@ -155,3 +159,4 @@ export default function WhyChooseSowitech() {
     </section>
   );
 }
+

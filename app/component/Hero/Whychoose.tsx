@@ -104,8 +104,8 @@ const WhyChoose = () => {
         </div>
 
         {/* BOTTOM: Feature cards bar */}
-        <div className="px-[50px] pb-[50px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="px-6 sm:px-10 lg:px-16 xl:px-20 pb-12 lg:pb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {features.map((feature, i) => {
               const Icon = feature.icon;
               return (
@@ -115,8 +115,8 @@ const WhyChoose = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: customEase }}
-                  className="group flex flex-col gap-3 px-8 py-8 border-t border-l border-white/20 hover:border-[#0D427D] transition-all duration-300 cursor-default relative overflow-hidden"
-                  style={{ backgroundColor: 'rgba(13, 30, 55, 0.35)', backdropFilter: 'blur(12px)' }}
+                  className="group flex flex-col gap-3 px-6 py-7 lg:px-7 lg:py-8 rounded-xl border border-white/20 hover:border-[#0D427D] hover:bg-[#0d1e37]/60 transition-all duration-300 cursor-default relative overflow-hidden shadow-lg backdrop-blur-md"
+                  style={{ backgroundColor: 'rgba(13, 30, 55, 0.45)' }}
                 >
                   {/* Top line accent on hover */}
                   <div

@@ -20,12 +20,12 @@ const BenefitsWaterRecycling = () => {
   return (
     <section id="water-recycling" className="w-full bg-white font-sans scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col lg:flex-row lg:gap-16">
+        <div className="flex flex-col lg:flex-row-reverse lg:gap-16">
 
-          {/* LEFT - sticky panel */}
+          {/* RIGHT - sticky panel */}
           <div className="lg:w-[340px] xl:w-[380px] flex-shrink-0 lg:sticky lg:top-0 lg:self-start lg:h-screen flex flex-col justify-center py-16 lg:py-0">
             <motion.div
-              initial={{ opacity: 0, x: -24 }}
+              initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: customEase }}
@@ -51,7 +51,7 @@ const BenefitsWaterRecycling = () => {
             </motion.div>
           </div>
 
-          {/* RIGHT - scrolling list */}
+          {/* LEFT - scrolling list */}
           <div className="flex-1 flex flex-col py-16 lg:py-24">
             {benefits.map((b) => (
               <motion.div

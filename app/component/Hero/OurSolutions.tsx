@@ -12,6 +12,7 @@ const solutions = [
   {
     id: 0,
     anchorId: 'wtp',
+    pageHref: '/solutions/wtp',
     title: 'Water Treatment Plants',
     subtitle: '(WTP)',
     description:
@@ -24,6 +25,7 @@ const solutions = [
   {
     id: 1,
     anchorId: 'ttp',
+    pageHref: '/solutions/ttp',
     title: 'Tertiary Treatment Plants',
     subtitle: '(TTP)',
     description:
@@ -36,6 +38,7 @@ const solutions = [
   {
     id: 2,
     anchorId: 'water-recycling-solution',
+    pageHref: '/solutions/water-recycling',
     title: 'Water Recycling Solutions',
     subtitle: '',
     description:
@@ -48,6 +51,7 @@ const solutions = [
   {
     id: 3,
     anchorId: 'stp-upgradation',
+    pageHref: '/solutions/stp-upgradation',
     title: 'STP to TTP Upgradation',
     subtitle: '',
     description:
@@ -233,7 +237,7 @@ export default function OurSolutions() {
                   {/* CTA */}
                   <motion.div variants={fadeUpVariants}>
                     <Link
-                      href={`#${solution.anchorId}`}
+                      href={solution.pageHref}
                       className="group inline-flex items-center gap-3 rounded-full border-2 font-semibold text-sm px-7 py-3 transition-all duration-300 hover:scale-[1.03]"
                       style={{ borderColor: '#0D427D', color: '#0D427D', backgroundColor: 'transparent' }}
                       onMouseEnter={e => {

@@ -3,12 +3,40 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowUpRight, ChevronDown, Droplets, Filter, RefreshCw, Settings } from "lucide-react";
+
+const solutionLinks = [
+  {
+    name: "Water Treatment Plants (WTP)",
+    href: "/solutions/wtp",
+    desc: "Raw water to high-purity process water",
+    icon: Droplets,
+  },
+  {
+    name: "Tertiary Treatment Plants (TTP)",
+    href: "/solutions/ttp",
+    desc: "STP water recovery for cooling & utilities",
+    icon: Filter,
+  },
+  {
+    name: "Water Recycling Solutions",
+    href: "/solutions/water-recycling",
+    desc: "Closed-loop industrial water reuse",
+    icon: RefreshCw,
+  },
+  {
+    name: "STP to TTP Upgradation",
+    href: "/solutions/stp-upgradation",
+    desc: "Retrofit existing STP for higher recovery",
+    icon: Settings,
+  },
+];
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Solutions", href: "/#solutions" },
+  { name: "Solutions", href: "/solutions", hasDropdown: true },
   { name: "Industries", href: "/#industries" },
   { name: "Contact", href: "/contact" },
 ];
@@ -16,6 +44,8 @@ const navLinks = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -59,9 +89,83 @@ const Navbar = () => {
         </a>
 
         {/* ── Desktop Nav Links ── */}
-        <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
           {navLinks.map((link) => {
             const active = isActiveFn(link.href);
+
+            if (link.hasDropdown) {
+              return (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => setIsSolutionsOpen(true)}
+                  onMouseLeave={() => setIsSolutionsOpen(false)}
+                >
+                  <a
+                    href={link.href}
+                    className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg flex items-center gap-1.5 ${
+                      active || isSolutionsOpen
+                        ? "text-[#0D427D]"
+                        : "text-[#2d3748] hover:text-[#0D427D]"
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isSolutionsOpen ? "rotate-180 text-[#0D427D]" : "text-slate-400 group-hover:text-[#0D427D]"
+                      }`}
+                    />
+
+                    {/* animated orange underline */}
+                    <span
+                      className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
+                        active || isSolutionsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </a>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isSolutionsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="absolute top-full left-0 mt-1 w-80 bg-white rounded-2xl shadow-[0_15px_40px_rgba(13,66,125,0.15)] border border-slate-100 p-3 z-50 overflow-hidden"
+                      >
+                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-1.5 mb-1 border-b border-slate-100">
+                          Our Water Solutions
+                        </div>
+                        {solutionLinks.map((sol) => {
+                          const SolIcon = sol.icon;
+                          return (
+                            <a
+                              key={sol.name}
+                              href={sol.href}
+                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-blue-50/80 transition-colors group/item"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0D427D] flex items-center justify-center shrink-0 group-hover/item:bg-[#0D427D] group-hover/item:text-white transition-colors shadow-sm">
+                                <SolIcon className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-[13px] font-bold text-[#0D2244] group-hover/item:text-[#0D427D] transition-colors leading-snug">
+                                  {sol.name}
+                                </div>
+                                <div className="text-[11px] text-slate-500 leading-tight mt-0.5">
+                                  {sol.desc}
+                                </div>
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+
             return (
               <a
                 key={link.name}
@@ -112,12 +216,56 @@ const Navbar = () => {
       {/* ── Mobile Dropdown ── */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-white border-t border-slate-100 px-6 py-5 shadow-xl space-y-1">
           {navLinks.map((link) => {
             const active = isActiveFn(link.href);
+
+            if (link.hasDropdown) {
+              return (
+                <div key={link.name} className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex-1 py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
+                        active ? "text-[#0D427D] bg-blue-50" : "text-[#2d3748] hover:text-[#0D427D]"
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                    <button
+                      onClick={() => setIsMobileSolutionsOpen(!isMobileSolutionsOpen)}
+                      className="p-3 text-slate-500 hover:text-[#0D427D]"
+                    >
+                      <ChevronDown className={`w-5 h-5 transition-transform ${isMobileSolutionsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                  </div>
+
+                  {isMobileSolutionsOpen && (
+                    <div className="pl-4 space-y-1 border-l-2 border-blue-100 ml-3 py-1">
+                      {solutionLinks.map((sol) => {
+                        const SolIcon = sol.icon;
+                        return (
+                          <a
+                            key={sol.name}
+                            href={sol.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm text-slate-700 hover:text-[#0D427D] hover:bg-blue-50/60 font-medium"
+                          >
+                            <SolIcon className="w-4 h-4 text-[#0D427D]" />
+                            <span>{sol.name}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <a
                 key={link.name}
