@@ -7,12 +7,12 @@ import { Leaf } from 'lucide-react';
 
 export default function WhoWeAre() {
   return (
-    <section id="who-we-are" className="w-full bg-white py-16 md:py-24 overflow-hidden font-sans">
+    <section id="who-we-are" className="w-full bg-[#F2F8FF] py-16 md:py-24 overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* LEFT COLUMN: BIG MAIN IMAGE + CIRCULAR ROTATING BADGE */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -87,7 +87,7 @@ export default function WhoWeAre() {
           </motion.div>
 
           {/* RIGHT COLUMN: CONTENT */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}

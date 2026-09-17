@@ -94,12 +94,11 @@ export default function IndustriesWeServe() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-2 mb-3"
+                className="mb-3"
               >
-                <span className="text-[11px] sm:text-xs font-bold tracking-widest text-[#0D427D] uppercase">
+                <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
                   INDUSTRIES WE SERVE
                 </span>
-                <div className="w-8 sm:w-10 h-[2px] bg-[#0D427D]/60 rounded-full" />
               </motion.div>
 
               {/* Headline */}
@@ -108,7 +107,7 @@ export default function IndustriesWeServe() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.18] mb-4"
+                className="font-geist text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A1A3B] tracking-tight leading-[1.18] mb-4"
               >
                 Water Solutions <br />
                 Built for <span className="text-[#0D427D]">Every Industry</span>
@@ -120,7 +119,7 @@ export default function IndustriesWeServe() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal max-w-xs"
+                className="font-geist text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-xs mb-6"
               >
                 From industrial facilities to large-scale communities, we design
                 water treatment and reuse systems around the specific demands of

@@ -33,6 +33,9 @@ const HeroSection = () => {
           />
         </motion.div>
 
+        {/* Subtle low-opacity overall overlay */}
+        <div className="absolute inset-0 bg-[#07132B]/25 pointer-events-none" />
+
         {/* Left dark gradient so text is always readable */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#071320]/60 via-[#071320]/35 to-[#071320]/10" />
         {/* Bottom fade */}
@@ -53,10 +56,10 @@ const HeroSection = () => {
             Transforming Wastewater
             <br />
             into a{" "}
-            <span className="text-[#F39A1E] relative inline-block">
+            <span className="text-white relative inline-block">
               Valuable Resource
               {/* subtle underline glow */}
-              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#F39A1E]/40 rounded-full blur-sm" />
+              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-white/40 rounded-full blur-sm" />
             </span>
           </motion.h1>
 
@@ -80,7 +83,7 @@ const HeroSection = () => {
             {["Treat.", "Recycle.", "Reuse."].map((tag) => (
               <span
                 key={tag}
-                className="text-[#F39A1E] text-sm font-bold tracking-wide"
+                className="text-white text-sm font-bold tracking-wide"
               >
                 {tag}
               </span>
@@ -98,7 +101,7 @@ const HeroSection = () => {
             <a
               href="/#solutions"
               id="hero-explore-btn"
-              className="group inline-flex items-center gap-2.5 bg-[#F39A1E] hover:bg-[#e08b12] text-white px-7 py-3.5 rounded-full font-bold text-[13.5px] uppercase tracking-wider shadow-lg hover:shadow-[#F39A1E]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
+              className="group inline-flex items-center gap-2.5 bg-[#177BC9] hover:bg-[#1368aa] text-white px-7 py-3.5 rounded-full font-bold text-[13.5px] uppercase tracking-wider shadow-lg hover:shadow-[#177BC9]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
             >
               <span>Explore Solutions</span>
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5">

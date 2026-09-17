@@ -37,6 +37,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Solutions", href: "/solutions", hasDropdown: true },
+  { name: "YAHA Technology", href: "/yaha-technology" },
   { name: "Industries", href: "/#industries" },
   { name: "Contact", href: "/contact" },
 ];
@@ -193,7 +194,7 @@ const Navbar = () => {
           <a
             href="/contact"
             id="navbar-enquiry-cta"
-            className="group flex items-center gap-2 bg-[#F39A1E] hover:bg-[#e08b12] text-white px-5 py-2.5 rounded-full font-bold text-[12px] tracking-wider uppercase shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
+            className="group flex items-center gap-2 bg-[#177BC9] hover:bg-[#1368aa] text-white px-5 py-2.5 rounded-full font-bold text-[12px] tracking-wider uppercase shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
           >
             <span>Enquiry Now!</span>
             <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
@@ -286,7 +287,7 @@ const Navbar = () => {
             <a
               href="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="block w-full text-center bg-[#F39A1E] hover:bg-[#e08b12] text-white py-3 rounded-full font-bold text-[13px] uppercase tracking-wider shadow-md transition-all"
+              className="block w-full text-center bg-[#177BC9] hover:bg-[#1368aa] text-white py-3 rounded-full font-bold text-[13px] uppercase tracking-wider shadow-md transition-all"
             >
               Enquiry Now!
             </a>

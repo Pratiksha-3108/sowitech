@@ -27,7 +27,7 @@ const itemVariants: Variants = {
 
 export default function CompanyOverview() {
   return (
-    <section className="py-20 md:py-28 bg-white font-sans relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#F2F8FF] font-sans relative overflow-hidden">
       {/* Subtle Background Glow Orbs */}
       <div className="absolute top-10 right-10 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#1A56A6]/10 rounded-full blur-[140px] pointer-events-none" />

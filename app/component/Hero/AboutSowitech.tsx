@@ -72,14 +72,14 @@ const AboutSowitech = () => {
               </span>
             </motion.div>
 
-            {/* 2. Main Heading (Masked Upward Reveal) */}
+            {/* 2. Main Heading */}
             <div className="overflow-hidden mb-6">
               <motion.h2
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
-                className="font-geist text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold leading-[1.18] text-slate-900 tracking-tight"
+                className="font-geist text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.15] text-[#0A1A3B] tracking-tight"
               >
                 Engineering Better{' '}
                 <span className="text-[#0D427D]">Water Management</span>

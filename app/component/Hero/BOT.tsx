@@ -55,23 +55,22 @@ export default function BOTSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="border-b border-gray-200 pb-8 mb-12">
+        <div className="border-b border-slate-200/80 pb-8 mb-12">
           <div className="max-w-3xl">
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#ea580c]" />
-              <span className="text-xs font-bold tracking-widest text-[#0D427D] uppercase">
-                BENEFITS
+            {/* Eyebrow */}
+            <div className="mb-3">
+              <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
+                BOT MODEL
               </span>
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+            <h2 className="font-geist text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A1A3B] tracking-tight leading-tight">
               Benefits of the <span className="text-[#0D427D]">BOT Model</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed font-normal">
+            <p className="font-geist text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mt-3">
               Implement advanced water treatment infrastructure with minimal upfront capital investment and a flexible, low-financial-burden model.
             </p>
           </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Droplets, Leaf, Briefcase } from 'lucide-react';
@@ -44,6 +43,8 @@ const WhyChoose = () => {
           priority
           className="object-cover object-center"
         />
+        {/* Low-opacity dark overlay */}
+        <div className="absolute inset-0 bg-[#07132B]/30 pointer-events-none" />
         {/* Subtle top gradient only for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30" />
       </div>
@@ -51,7 +52,7 @@ const WhyChoose = () => {
       {/* ── Content ── */}
       <div className="relative z-10 flex flex-col justify-between h-full" style={{ minHeight: '90vh' }}>
 
-        {/* TOP: Label + Headline + CTA */}
+        {/* TOP: Label + Headline */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 lg:pt-24 pb-12">
 
           {/* Left: Label + Big headline */}
@@ -62,44 +63,17 @@ const WhyChoose = () => {
             transition={{ duration: 0.7, ease: customEase }}
             className="max-w-2xl"
           >
-            {/* Label with #0D427D primary accent bar */}
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D427D' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/70">
-                Why Choose Sowitech
-              </p>
+            {/* Label */}
+            <div className="mb-3">
+              <span className="text-xs font-bold tracking-[0.2em] text-sky-400 uppercase font-geist">
+                WHY CHOOSE SOWITECH
+              </span>
             </div>
 
-            <h2 className="font-geist text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12]">
+            <h2 className="font-geist text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
               Built for performance.<br />
-              <span className="text-white">Designed for water.</span>
+              <span className="text-sky-400">Designed for water.</span>
             </h2>
-          </motion.div>
-
-          {/* Right: Primary CTA button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: customEase }}
-            className="flex-shrink-0"
-          >
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-3 font-semibold text-sm px-7 py-3.5 rounded-sm transition-all duration-300 shadow-lg text-white"
-              style={{ backgroundColor: '#0D427D' }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#ffffff';
-                (e.currentTarget as HTMLElement).style.color = '#0D427D';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#0D427D';
-                (e.currentTarget as HTMLElement).style.color = '#ffffff';
-              }}
-            >
-              WORK WITH US
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
           </motion.div>
         </div>
 

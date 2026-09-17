@@ -1,190 +1,235 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
-import {
-  Droplets,
-  Filter,
-  RefreshCw,
-  TrendingUp,
-  Factory,
-  ClipboardCheck,
-  ShieldCheck,
-} from 'lucide-react';
 
-/* ── Data ─────────────────────────────────────────────── */
 const expertiseItems = [
   {
     number: '01',
     title: 'Water Treatment Plants',
-    description:
-      'Turnkey engineering and execution of raw water treatment systems ensuring high-purity process water for industrial applications.',
-    icon: Droplets,
+    subtitle: 'Engineered systems designed to convert raw water into reliable, high-quality process water.',
     image: '/Images/home/untraflitration-plant.png',
   },
   {
     number: '02',
     title: 'Tertiary Treatment Plants',
-    description:
-      'Advanced ultrafiltration, reverse osmosis, and polishing systems designed to meet stringent discharge & reuse standards.',
-    icon: Filter,
+    subtitle: 'Advanced tertiary treatment systems engineered for maximum contaminant removal and high-purity output.',
     image: '/Images/home/yaha_filtration_plant.jpg',
   },
   {
     number: '03',
     title: 'Water Recycling Systems',
-    description:
-      'Integrated closed-loop water recovery solutions that enable industrial facilities to maximize every drop of water.',
-    icon: RefreshCw,
+    subtitle: 'Closed-loop recycling solutions to treat and reuse industrial wastewater efficiently.',
     image: '/Images/home/freshwater.jpg',
   },
   {
     number: '04',
     title: 'STP to TTP Upgradation',
-    description:
-      'Retrofitting existing Sewage Treatment Plants into high-efficiency Tertiary Treatment systems for high-quality utility reuse.',
-    icon: TrendingUp,
+    subtitle: 'Upgrading existing Sewage Treatment Plants into high-performance Tertiary Treatment Plants.',
     image: '/Images/home/circular.png',
   },
   {
     number: '05',
     title: 'Industrial Water Reuse',
-    description:
-      'Customized water reclamation setups tailored for cooling tower make-up, boiler feed, and process shop support.',
-    icon: Factory,
+    subtitle: 'Comprehensive water recovery architectures to minimize freshwater reliance across operations.',
     image: '/Images/home/independence.jpg',
   },
   {
     number: '06',
     title: 'Water Audit & Consultation',
-    description:
-      'Detailed diagnostic water balance audits, quality assessments, and expert engineering consultancy for optimized consumption.',
-    icon: ClipboardCheck,
+    subtitle: 'On-site evaluations and technical audits to identify water efficiency opportunities and zero-waste pathways.',
     image: '/Images/home/esg.png',
-  },
-  {
-    number: '07',
-    title: 'BOT Water Infrastructure',
-    description:
-      'Build-Own-Operate-Transfer (BOOT/BOT) models for complete industrial water infrastructure with long-term O&M assurance.',
-    icon: ShieldCheck,
-    image: '/Images/home/hero.png',
   },
 ];
 
-/* ── Section panel — one per item ─────────────────────── */
-function ItemPanel({
-  item,
-  index,
-  onActivate,
-}: {
-  item: (typeof expertiseItems)[0];
-  index: number;
-  onActivate: (i: number) => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const Icon = item.icon;
+export default function WhatWeDo() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) onActivate(index);
-      },
-      { threshold: 0.5 }
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const index = Math.min(
+      expertiseItems.length - 1,
+      Math.floor(latest * expertiseItems.length)
     );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [index, onActivate]);
+    setActiveIndex(index);
+  });
+
+  const activeItem = expertiseItems[activeIndex];
+
+  // Group 1: Items 01, 02, 03 | Group 2: Items 04, 05, 06
+  const isGroup2 = activeIndex >= 3;
+  const currentGroupItems = isGroup2
+    ? expertiseItems.slice(3, 6)
+    : expertiseItems.slice(0, 3);
 
   return (
-    <div
-      ref={ref}
-      className="h-screen flex items-center"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-25% 0px -25% 0px' }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-lg"
-      >
-        {/* Big number */}
-        <div
-          className="text-[7rem] sm:text-[9rem] font-extrabold leading-none mb-6 select-none"
-          style={{
-            color: 'rgba(13,66,125,0.12)',
-            fontVariantNumeric: 'tabular-nums',
-          }}
-        >
-          {item.number}
+    <div ref={containerRef} className="relative h-[320vh] font-geist bg-[#F2F8FF]">
+      {/* Sticky Fullscreen Section */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden py-10 px-6 sm:px-10 lg:px-16 xl:px-20">
+        
+        {/* Background grid line accents */}
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute top-0 left-1/3 w-[1px] h-full bg-[#0D427D]/10" />
+          <div className="absolute top-0 left-2/3 w-[1px] h-full bg-[#0D427D]/10" />
         </div>
 
-        {/* Icon + label row */}
-        <div className="flex items-center gap-3 mb-4">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-            style={{ backgroundColor: 'rgba(13,66,125,0.1)' }}
-          >
-            <Icon className="w-5 h-5" style={{ color: '#0D427D' }} />
+        <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+
+          {/* LEFT COLUMN: Eyebrow + Active Title + Subtitle + Progress */}
+          <div className="lg:col-span-4 flex flex-col justify-center space-y-6">
+            
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0D427D]" />
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#0D427D]">
+                WHAT WE DO
+              </span>
+            </div>
+
+            {/* Dynamic Content Block */}
+            <div className="min-h-[170px] sm:min-h-[200px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.number}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-4"
+                >
+                  <h2 className="text-xl sm:text-2xl lg:text-[26px] xl:text-[28px] font-extrabold text-[#0A1A3B] leading-snug">
+                    {activeItem.title}
+                  </h2>
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-sm">
+                    {activeItem.subtitle}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
-          <span
-            className="text-[11px] font-extrabold tracking-[0.22em] uppercase"
-            style={{ color: '#0D427D' }}
-          >
-            Stage {item.number}
-          </span>
+
+          {/* CENTER COLUMN: Perfectly proportioned circular image clipped + Concentric Engineering Rings */}
+          <div className="lg:col-span-4 flex items-center justify-center relative py-4 shrink-0">
+            <div className="relative w-[230px] h-[230px] sm:w-[270px] sm:h-[270px] lg:w-[290px] lg:h-[290px] xl:w-[310px] xl:h-[310px] aspect-square rounded-full shrink-0 flex items-center justify-center">
+              
+              {/* Ring 1: Thin Orbital Ring */}
+              <div className="absolute inset-[-10px] border border-[#0D427D]/20 rounded-full pointer-events-none" />
+
+              {/* Ring 2: Subtle Dashed Technical Ring */}
+              <motion.div
+                className="absolute inset-[-20px] border border-dashed border-[#38BDF8]/40 rounded-full pointer-events-none"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Ring 3: Concentric Geometric Dots */}
+              <div className="absolute inset-[-30px] border border-slate-200/60 rounded-full pointer-events-none" />
+
+              {/* Orbiting technical indicator dots */}
+              <motion.div
+                className="absolute inset-[-20px] pointer-events-none"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+              >
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#0D427D] shadow-sm" />
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-[#38BDF8]" />
+              </motion.div>
+
+              {/* Clipped Circular Image Container */}
+              <div className="relative w-full h-full aspect-square rounded-full overflow-hidden shadow-xl border-4 border-white bg-slate-900 z-10 shrink-0">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeItem.number}
+                    initial={{ opacity: 0, scale: 1.08 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative w-full h-full aspect-square rounded-full overflow-hidden"
+                  >
+                    <Image
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      fill
+                      priority
+                      className="object-cover object-center rounded-full"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: 3 Items initially -> 3 Items on vertical scroll (Staggered alignment) */}
+          <div className="lg:col-span-4 flex flex-col justify-center space-y-4 pl-0 lg:pl-4 min-h-[320px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isGroup2 ? 'group-2' : 'group-1'}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-4"
+              >
+                {currentGroupItems.map((item, idx) => {
+                  const globalIndex = expertiseItems.findIndex(e => e.number === item.number);
+                  const isActive = globalIndex === activeIndex;
+                  const isMiddle = idx === 1;
+
+                  return (
+                    <button
+                      key={item.number}
+                      onClick={() => setActiveIndex(globalIndex)}
+                      className={`w-full text-left flex items-start gap-4 py-2 px-2 transition-all duration-300 bg-transparent ${
+                        isMiddle ? 'ml-6 sm:ml-8' : 'ml-0'
+                      }`}
+                    >
+                      {/* Number badge / circle */}
+                      <div
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex items-center justify-center text-xs font-mono font-bold transition-all duration-300 ${
+                          isActive
+                            ? 'bg-[#0D427D] text-white shadow-md scale-110'
+                            : 'bg-slate-200/80 text-slate-500 hover:bg-slate-300/80'
+                        }`}
+                      >
+                        {item.number}
+                      </div>
+
+                      {/* Title + Subtitle */}
+                      <div className="flex-1 overflow-hidden">
+                        <h4
+                          className={`font-extrabold tracking-tight transition-all duration-300 ${
+                            isActive
+                              ? 'text-[#0A1A3B] text-base sm:text-lg'
+                              : 'text-slate-400 text-sm sm:text-base hover:text-slate-700'
+                          }`}
+                        >
+                          {item.title}
+                        </h4>
+                        <p
+                          className={`text-xs mt-1 leading-relaxed line-clamp-2 transition-colors duration-300 ${
+                            isActive ? 'text-slate-600 font-normal' : 'text-slate-400/80 font-normal'
+                          }`}
+                        >
+                          {item.subtitle}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
-
-        {/* Title */}
-        <h3
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight mb-5"
-          style={{ color: '#0A1E3D' }}
-        >
-          {item.title}
-        </h3>
-
-        {/* Description */}
-        <p
-          className="text-base sm:text-lg leading-relaxed max-w-md"
-          style={{ color: '#3D5A7A' }}
-        >
-          {item.description}
-        </p>
-
-        {/* Accent bar */}
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: 48 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
-          className="h-[3px] rounded-full mt-8"
-          style={{ backgroundColor: '#0D427D' }}
-        />
-      </motion.div>
+      </div>
     </div>
   );
-}
-
-/* ── Main export ──────────────────────────────────────── */
-export default function WhatWeDo() {
-  return null;
-  /*
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleActivate = useCallback((i: number) => {
-    setActiveIndex(i);
-  }, []);
-
-  return (
-    <section
-      className="relative font-sans overflow-hidden"
-      style={{ backgroundColor: '#F2F8FF' }}
-    >
-      ...
-    </section>
-  );
-  */
 }

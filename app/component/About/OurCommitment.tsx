@@ -39,8 +39,8 @@ export default function OurCommitment() {
           </motion.div>
         </div>
 
-        {/* 2 Cards Grid: Straight Edges (rounded-none), Top Image touching edges, Bottom Text */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 w-full mx-auto">
+        {/* 2 Cards Grid with Curved Image Borders and Padding */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full mx-auto">
           {commitments.map((card, idx) => (
             <motion.div
               key={idx}
@@ -49,21 +49,21 @@ export default function OurCommitment() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="bg-white rounded-none shadow-[0_10px_35px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col overflow-hidden group hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-[0_10px_35px_rgba(0,0,0,0.04)] border border-slate-200/80 flex flex-col overflow-hidden group hover:shadow-xl transition-all duration-300"
             >
-              {/* Top Image touching card top & sides */}
-              <div className="relative w-full aspect-[16/10] sm:aspect-[16/9.5] bg-slate-100 overflow-hidden">
+              {/* Top Image with Curved Borders & Padding */}
+              <div className="relative w-full aspect-[16/10] sm:aspect-[16/9.5] bg-slate-100 overflow-hidden rounded-xl sm:rounded-2xl">
                 <Image
                   src={card.image}
                   alt={card.title}
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover object-center rounded-xl sm:rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl" />
               </div>
 
               {/* Bottom Text Area with Padding */}
-              <div className="p-6 sm:p-8 flex flex-col justify-center">
+              <div className="p-5 sm:p-6 pt-5 flex flex-col justify-center">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0D2244] tracking-tight mb-3">
                   {card.title}
                 </h3>

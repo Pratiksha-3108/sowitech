@@ -30,15 +30,17 @@ const BenefitsWaterRecycling = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: customEase }}
             >
-              <div className="flex items-center gap-3 mb-5">
-                <span className="w-8 h-[2px] bg-[#F39A1E]" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#F39A1E]">Key Benefits</p>
+              <div className="mb-3">
+                <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
+                  KEY BENEFITS
+                </span>
               </div>
-              <h2 className="text-5xl sm:text-6xl lg:text-[68px] font-extrabold text-[#0D1F3C] leading-[1.05] tracking-tight mb-6">
-                Benefits
+              <h2 className="font-geist text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1A3B] tracking-tight leading-tight mb-4">
+                Benefits of <br />
+                <span className="text-[#0D427D]">Water Recycling</span>
               </h2>
               <div className="w-10 h-px bg-slate-200 mb-6" />
-              <p className="text-slate-500 text-[15px] leading-relaxed mb-8 max-w-xs">
+              <p className="font-geist text-slate-600 text-sm sm:text-base leading-relaxed mb-8 max-w-xs">
                 Boost your operational efficiency, cut costs, and meet sustainability goals with advanced water recycling from Sowitech Engineering.
               </p>
               <Link

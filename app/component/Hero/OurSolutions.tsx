@@ -104,13 +104,10 @@ export default function OurSolutions() {
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 mb-5"
+          className="mb-3"
         >
-          <span
-            className="text-sm font-semibold px-4 py-1.5 rounded-full border"
-            style={{ color: '#0D427D', borderColor: '#0D427D44', backgroundColor: '#EBF3FF' }}
-          >
-            Our Solutions
+          <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
+            OUR SOLUTIONS
           </span>
         </motion.div>
         <motion.h2
@@ -118,17 +115,17 @@ export default function OurSolutions() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="font-geist text-4xl md:text-5xl font-extrabold text-black leading-tight"
+          className="font-geist text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A1A3B] tracking-tight leading-tight"
         >
           Engineered for{' '}
-          <span style={{ color: '#0D427D' }}>Every Water Challenge</span>
+          <span className="text-[#0D427D]">Every Water Challenge</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="font-geist mt-5 text-gray-500 text-lg leading-relaxed"
+          className="font-geist text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mt-4"
         >
           From raw water intake to advanced recycling — our solutions cover every step of the water management lifecycle.
         </motion.p>
