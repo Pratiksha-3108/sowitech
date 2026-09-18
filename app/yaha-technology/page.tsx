@@ -4,6 +4,7 @@ import Navbar from '../component/Navbar';
 import YahaHero from '../component/YahaTechnology/YahaHero';
 import YahaAboutSection from '../component/YahaTechnology/YahaAboutSection';
 import YahaAdvantagesSection from '../component/YahaTechnology/YahaAdvantagesSection';
+import YahaApplicationsSection from '../component/YahaTechnology/YahaApplicationsSection';
 import YahaPartnershipSection from '../component/YahaTechnology/YahaPartnershipSection';
 import Footer from '../component/Footer';
 
@@ -21,6 +22,7 @@ export default function YahaTechnologyPage() {
         <YahaHero />
         <YahaAboutSection />
         <YahaAdvantagesSection />
+        <YahaApplicationsSection />
         <YahaPartnershipSection />
       </main>
       <Footer />

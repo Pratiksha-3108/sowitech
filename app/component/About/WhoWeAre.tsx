@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Leaf } from 'lucide-react';
+
 
 export default function WhoWeAre() {
   return (
@@ -95,9 +95,8 @@ export default function WhoWeAre() {
             className="lg:col-span-6 flex flex-col justify-center"
           >
             {/* Tagline / Eyebrow Badge */}
-            <div className="flex items-center gap-2 mb-6">
-              <Leaf className="w-4 h-4 text-[#16a34a] fill-[#16a34a]/20 shrink-0" />
-              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#16a34a]">
+            <div className="mb-6">
+              <span className="text-xs sm:text-sm font-extrabold tracking-[0.2em] uppercase text-[#0D427D]">
                 ABOUT US
               </span>
             </div>
