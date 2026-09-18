@@ -25,12 +25,6 @@ const solutionLinks = [
     desc: "Closed-loop industrial water reuse",
     icon: RefreshCw,
   },
-  {
-    name: "STP to TTP Upgradation",
-    href: "/solutions/stp-upgradation",
-    desc: "Retrofit existing STP for higher recovery",
-    icon: Settings,
-  },
 ];
 
 const navLinks = [
@@ -125,7 +119,7 @@ const Navbar = () => {
                     />
                   </a>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown Menu matching uploaded reference design */}
                   <AnimatePresence>
                     {isSolutionsOpen && (
                       <motion.div
@@ -133,33 +127,58 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute top-full left-0 mt-1 w-80 bg-white rounded-2xl shadow-[0_15px_40px_rgba(13,66,125,0.15)] border border-slate-100 p-3 z-50 overflow-hidden"
+                        className="absolute top-full left-0 mt-1 w-[540px] bg-white rounded-2xl shadow-[0_15px_45px_rgba(13,66,125,0.18)] border border-slate-100 p-0 z-50 overflow-hidden flex flex-row min-h-[200px]"
                       >
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-1.5 mb-1 border-b border-slate-100">
-                          Our Water Solutions
+                        {/* Left Card: Flush Image (No Padding to Image) */}
+                        <div className="relative w-48 shrink-0 flex flex-col justify-end p-4 bg-slate-900 self-stretch min-h-full">
+                          <Image
+                            src="/Images/home/yaha_filtration_plant.jpg"
+                            alt="Water Solutions"
+                            fill
+                            className="object-cover object-center opacity-85 hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0D2244]/95 via-[#0D2244]/40 to-transparent z-10" />
+                          <div className="relative z-20">
+                            <h4 className="text-white text-base font-extrabold tracking-tight">Water Solutions</h4>
+                            <p className="text-slate-200 text-[11px] leading-tight mt-1">
+                              Engineered for high performance & verified recovery.
+                            </p>
+                          </div>
                         </div>
-                        {solutionLinks.map((sol) => {
-                          const SolIcon = sol.icon;
-                          return (
-                            <a
-                              key={sol.name}
-                              href={sol.href}
-                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-blue-50/80 transition-colors group/item"
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0D427D] flex items-center justify-center shrink-0 group-hover/item:bg-[#0D427D] group-hover/item:text-white transition-colors shadow-sm">
-                                <SolIcon className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <div className="text-[13px] font-bold text-[#0D2244] group-hover/item:text-[#0D427D] transition-colors leading-snug">
+
+                        {/* Right Content: 3 Solutions Layout (2 in line 1, 1 in line 2) - Text Only */}
+                        <div className="flex-1 flex flex-col justify-center gap-2.5 p-3.5">
+                          {/* Row 1: 2 items in 1 line */}
+                          <div className="grid grid-cols-2 gap-2.5">
+                            {solutionLinks.slice(0, 2).map((sol) => (
+                              <a
+                                key={sol.name}
+                                href={sol.href}
+                                className="bg-white hover:bg-sky-50/80 border border-slate-200/80 hover:border-[#0D427D]/40 rounded-xl px-3 py-3 shadow-sm hover:shadow-md flex items-center justify-center text-center transition-all group/card h-full min-h-[44px]"
+                              >
+                                <div className="text-[12px] font-bold text-[#0D2244] group-hover/card:text-[#0D427D] transition-colors leading-snug">
                                   {sol.name}
                                 </div>
-                                <div className="text-[11px] text-slate-500 leading-tight mt-0.5">
-                                  {sol.desc}
+                              </a>
+                            ))}
+                          </div>
+
+                          {/* Row 2: 1 item in 1 line */}
+                          {(() => {
+                            const sol = solutionLinks[2];
+                            return (
+                              <a
+                                key={sol.name}
+                                href={sol.href}
+                                className="bg-white hover:bg-sky-50/80 border border-slate-200/80 hover:border-[#0D427D]/40 rounded-xl px-3 py-3 shadow-sm hover:shadow-md flex items-center justify-center text-center transition-all group/card min-h-[44px]"
+                              >
+                                <div className="text-[12px] font-bold text-[#0D2244] group-hover/card:text-[#0D427D] transition-colors leading-snug">
+                                  {sol.name}
                                 </div>
-                              </div>
-                            </a>
-                          );
-                        })}
+                              </a>
+                            );
+                          })()}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>

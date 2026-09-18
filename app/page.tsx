@@ -5,6 +5,7 @@ import WhyChoose from './component/Hero/Whychoose';
 import BOTSection from './component/Hero/BOT';
 import BenefitsWaterRecycling from './component/Hero/BenefitsWaterRecycling';
 import IndustriesWeServe from './component/Hero/IndustriesWeServe';
+import ProjectsSection from './component/Hero/ProjectsSection';
 import CallToAction from './component/Hero/CallToAction';
 import HeroSection from './component/Hero/HeroSection';
 import AboutSowitech from './component/Hero/AboutSowitech';
@@ -23,6 +24,7 @@ export default function SowitechLightHomePage() {
       <BenefitsWaterRecycling />
       <BOTSection />
       <IndustriesWeServe />
+      <ProjectsSection />
       <CallToAction />
       <Footer />
     </div>

@@ -2,6 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Navbar from '../component/Navbar';
 import YahaHero from '../component/YahaTechnology/YahaHero';
+import YahaAboutSection from '../component/YahaTechnology/YahaAboutSection';
+import YahaAdvantagesSection from '../component/YahaTechnology/YahaAdvantagesSection';
+import YahaPartnershipSection from '../component/YahaTechnology/YahaPartnershipSection';
 import Footer from '../component/Footer';
 
 export const metadata: Metadata = {
@@ -16,6 +19,9 @@ export default function YahaTechnologyPage() {
       <Navbar />
       <main className="pt-20">
         <YahaHero />
+        <YahaAboutSection />
+        <YahaAdvantagesSection />
+        <YahaPartnershipSection />
       </main>
       <Footer />
     </div>
