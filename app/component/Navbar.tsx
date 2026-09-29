@@ -59,11 +59,10 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white transition-all duration-300 ${
-        isScrolled
-          ? "shadow-[0_2px_20px_rgba(13,66,125,0.10)] py-2 border-b border-slate-100"
-          : "py-3 border-b border-slate-100/60"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled
+        ? "shadow-[0_2px_20px_rgba(13,66,125,0.10)] py-2 border-b border-slate-100"
+        : "py-3 border-b border-slate-100/60"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
 
@@ -76,9 +75,9 @@ const Navbar = () => {
           <Image
             src="/assets/logo_bgremove.png"
             alt="Sowitech Engineering Pvt. Ltd."
-            width={160}
-            height={50}
-            className="h-12 sm:h-14 w-auto object-contain"
+            width={240}
+            height={80}
+            className="h-16 sm:h-20 md:h-22 w-auto object-contain"
             priority
           />
         </a>
@@ -98,24 +97,21 @@ const Navbar = () => {
                 >
                   <a
                     href={link.href}
-                    className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg flex items-center gap-1.5 ${
-                      active || isSolutionsOpen
-                        ? "text-[#0D427D]"
-                        : "text-[#2d3748] hover:text-[#0D427D]"
-                    }`}
+                    className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg flex items-center gap-1.5 ${active || isSolutionsOpen
+                      ? "text-[#0D427D]"
+                      : "text-[#2d3748] hover:text-[#0D427D]"
+                      }`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        isSolutionsOpen ? "rotate-180 text-[#0D427D]" : "text-slate-400 group-hover:text-[#0D427D]"
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${isSolutionsOpen ? "rotate-180 text-[#0D427D]" : "text-slate-400 group-hover:text-[#0D427D]"
+                        }`}
                     />
 
                     {/* animated orange underline */}
                     <span
-                      className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
-                        active || isSolutionsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      }`}
+                      className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${active || isSolutionsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        }`}
                     />
                   </a>
 
@@ -190,18 +186,16 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg ${
-                  active
-                    ? "text-[#0D427D]"
-                    : "text-[#2d3748] hover:text-[#0D427D]"
-                }`}
+                className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg ${active
+                  ? "text-[#0D427D]"
+                  : "text-[#2d3748] hover:text-[#0D427D]"
+                  }`}
               >
                 {link.name}
                 {/* animated orange underline */}
                 <span
-                  className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
-                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  }`}
+                  className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
                 />
               </a>
             );
@@ -235,9 +229,8 @@ const Navbar = () => {
 
       {/* ── Mobile Dropdown ── */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="bg-white border-t border-slate-100 px-6 py-5 shadow-xl space-y-1">
           {navLinks.map((link) => {
@@ -250,9 +243,8 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex-1 py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
-                        active ? "text-[#0D427D] bg-blue-50" : "text-[#2d3748] hover:text-[#0D427D]"
-                      }`}
+                      className={`flex-1 py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${active ? "text-[#0D427D] bg-blue-50" : "text-[#2d3748] hover:text-[#0D427D]"
+                        }`}
                     >
                       {link.name}
                     </a>
@@ -291,11 +283,10 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`flex items-center justify-between py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
-                  active
-                    ? "text-[#0D427D] bg-blue-50"
-                    : "text-[#2d3748] hover:text-[#0D427D] hover:bg-slate-50"
-                }`}
+                className={`flex items-center justify-between py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${active
+                  ? "text-[#0D427D] bg-blue-50"
+                  : "text-[#2d3748] hover:text-[#0D427D] hover:bg-slate-50"
+                  }`}
               >
                 <span>{link.name}</span>
                 {active && <span className="w-2 h-2 rounded-full bg-[#F39A1E]" />}

@@ -17,7 +17,7 @@ const projectsData = [
     highlightValue: '3.59 NTU',
     guarantee: 'Guaranteed < 5 NTU',
     image: '/Images/home/yaha_filtration_plant.jpg',
-    detailsLink: '/solutions/ttp',
+    detailsLink: '/projects/ntpc-dadri-tertiary',
   },
   {
     id: 'sail-visl-drinking',
@@ -85,13 +85,17 @@ export default function ProjectsSection() {
   return (
     <section className="w-full bg-[#F2F8FF] py-16 md:py-24 font-geist relative overflow-hidden border-t border-[#D0E2F7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        
-        {/* Top Header Row with Short Title & View All Link */}
+
+        {/* Top Header Row with Title & View All Link */}
         <div className="flex flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-[#D0E2F7]">
-          <div className="flex items-center gap-3">
-            <span className="h-1 w-8 bg-[#0D427D] rounded-full flex-shrink-0" />
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0D427D] tracking-tight">
-              Featured Projects
+          <div>
+            <div className="mb-2">
+              <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
+                FEATURED PROJECTS
+              </span>
+            </div>
+            <h2 className="font-geist text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A1A3B] tracking-tight leading-tight">
+              Proven Track Record of <span className="text-[#0D427D]">Success</span>
             </h2>
           </div>
 

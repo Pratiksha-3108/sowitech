@@ -74,7 +74,6 @@ export default function SolutionsMainPage() {
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {solutions.map((sol, index) => {
-            const Icon = sol.icon;
             return (
               <motion.div
                 key={sol.id}
@@ -99,9 +98,6 @@ export default function SolutionsMainPage() {
                   </div>
 
                   <div className="p-8">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0D427D] flex items-center justify-center mb-5 group-hover:bg-[#0D427D] group-hover:text-white transition-colors">
-                      <Icon className="w-6 h-6" />
-                    </div>
                     <h3 className="text-2xl font-extrabold text-[#0D2244] mb-3 leading-snug">
                       {sol.title}
                     </h3>

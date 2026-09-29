@@ -124,19 +124,14 @@ export default function WhyChooseSowitech() {
 
                 {/* ── Foreground Content ── */}
                 <div className="relative z-10 flex flex-col h-full justify-between">
-                  {/* Custom Icon Container */}
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center p-2 transition-all duration-500 group-hover:bg-white/20 group-hover:backdrop-blur-md"
-                    style={{
-                      backgroundColor: 'rgba(13,66,125,0.06)',
-                    }}
-                  >
+                  {/* Custom Icon Container - White badge on hover for max contrast & visibility */}
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center p-2.5 bg-[#0D427D]/10 group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
                     <Image
                       src={item.icon}
                       alt={item.title}
                       width={24}
                       height={24}
-                      className="w-6 h-6 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-500"
+                      className="w-6 h-6 object-contain transition-all duration-300"
                     />
                   </div>
 

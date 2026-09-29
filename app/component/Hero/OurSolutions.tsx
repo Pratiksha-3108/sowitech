@@ -166,7 +166,6 @@ export default function OurSolutions() {
         {/* RIGHT: Scrollable service cards */}
         <div className="flex-1 flex flex-col">
           {solutions.map((solution, i) => {
-            const Icon = solution.icon;
             return (
               <div
                 key={solution.id}
@@ -203,14 +202,7 @@ export default function OurSolutions() {
                     <div className="flex-1 h-px bg-black/10" />
                   </motion.div>
 
-                  {/* Icon */}
-                  <motion.div
-                    variants={fadeUpVariants}
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm"
-                    style={{ backgroundColor: '#EBF3FF' }}
-                  >
-                    <Icon className="w-7 h-7" style={{ color: '#0D427D' }} strokeWidth={1.5} />
-                  </motion.div>
+
 
                   {/* Title */}
                   <motion.h3
