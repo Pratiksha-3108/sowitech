@@ -13,11 +13,11 @@ const customEase = [0.16, 1, 0.3, 1] as const;
 
 export default function STPUpgradationPage() {
   return (
-    <div className="pt-20 bg-slate-50 min-h-screen font-sans">
+    <div className="bg-slate-50 min-h-screen font-sans">
       <Navbar />
 
       {/* ── HERO SECTION ── */}
-      <section className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white overflow-hidden">
+      <section className="relative w-full pt-32 sm:pt-36 pb-16 md:pb-24 bg-gradient-to-b from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <Image
             src="/assets/mission.jpg"
@@ -27,7 +27,7 @@ export default function STPUpgradationPage() {
             priority
           />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -64,7 +64,7 @@ export default function STPUpgradationPage() {
       {/* ── OVERVIEW & KEY BENEFITS ── */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
               <Image

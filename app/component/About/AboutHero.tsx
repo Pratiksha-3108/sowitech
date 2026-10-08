@@ -9,7 +9,7 @@ export default function AboutHero() {
   return (
     <div className="w-full font-geist">
       {/* MAIN HERO BANNER */}
-      <section className="relative w-full h-[420px] sm:h-[480px] md:h-[520px] overflow-hidden flex items-center">
+      <section className="relative w-full min-h-[480px] sm:min-h-[520px] md:min-h-[560px] pt-28 sm:pt-32 pb-12 overflow-hidden flex items-center">
 
         {/* Background Image - Same as Home Hero section */}
         <div className="absolute inset-0 z-0">

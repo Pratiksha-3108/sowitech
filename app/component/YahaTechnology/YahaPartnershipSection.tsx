@@ -73,33 +73,33 @@ export default function YahaPartnershipSection() {
           </div>
 
           {/* Top Row: Sowitech Logo | Description Text | YAHA Logo */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10 pb-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 pb-4">
             
-            {/* Sowitech Logo (Transparent, No Box Border) */}
-            <div className="flex items-center justify-center w-52 sm:w-64 h-24 sm:h-28 flex-shrink-0">
+            {/* Sowitech Logo (Left Aligned, Symmetric Width) */}
+            <div className="flex items-center justify-start w-48 sm:w-56 lg:w-64 h-24 sm:h-28 flex-shrink-0">
               <div className="relative w-full h-full">
                 <Image
                   src="/assets/logo_bgremove.png"
                   alt="Sowitech Engineering Logo"
                   fill
-                  className="object-contain drop-shadow-sm"
+                  className="object-contain object-left drop-shadow-sm"
                 />
               </div>
             </div>
 
             {/* Central Text */}
-            <p className="text-center text-slate-900 text-base sm:text-lg md:text-xl font-semibold max-w-2xl leading-relaxed mt-4 sm:mt-6 lg:translate-y-2">
+            <p className="text-center text-slate-900 text-base sm:text-lg md:text-xl font-semibold max-w-2xl leading-relaxed mt-6 sm:mt-8 lg:mt-10 lg:translate-y-4">
               Sowitech Engineering combines engineering and project-execution capabilities with technology from YAHA Water Systems for selected applications.
             </p>
 
-            {/* YAHA Water Systems Logo (Transparent, No Box Border) */}
-            <div className="flex items-center justify-center w-28 sm:w-32 h-28 sm:h-32 flex-shrink-0">
-              <div className="relative w-full h-full">
+            {/* YAHA Water Systems Logo (Right Aligned, Symmetric Width & Equal Padding) */}
+            <div className="flex items-center justify-end w-48 sm:w-56 lg:w-64 h-24 sm:h-28 flex-shrink-0">
+              <div className="relative w-28 sm:w-32 h-28 sm:h-32">
                 <Image
                   src="/assets/yahalogo.png"
                   alt="YAHA Water Systems Logo"
                   fill
-                  className="object-contain drop-shadow-sm"
+                  className="object-contain object-right drop-shadow-sm"
                 />
               </div>
             </div>

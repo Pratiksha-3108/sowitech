@@ -66,7 +66,7 @@ export default function YahaApplicationsSection() {
     <section className="w-full bg-[#F4F9FD] py-16 md:py-24 font-geist relative overflow-hidden border-t border-sky-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* LEFT COLUMN: Header Text & Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -101,7 +101,7 @@ export default function YahaApplicationsSection() {
           >
             {/* Desktop Orbital Interactive Diagram */}
             <div className="hidden sm:block relative w-[440px] h-[440px] md:w-[480px] md:h-[480px] flex-shrink-0">
-              
+
               {/* Outer & Inner Orbit Circle Lines */}
               <div className="absolute inset-[11%] rounded-full border border-sky-300/80 pointer-events-none" />
               <div className="absolute inset-[22%] rounded-full border border-sky-300/70 pointer-events-none" />
@@ -109,7 +109,7 @@ export default function YahaApplicationsSection() {
               {/* Center Static Middle Circle Graphic */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
                 <div className="relative w-44 h-44 md:w-56 md:h-56 rounded-full flex items-center justify-center">
-                  
+
                   {/* Static middle_circle.png Graphic */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image

@@ -14,7 +14,7 @@ import Footer from '../component/Footer';
 
 export default function AboutPage() {
   return (
-    <div className="pt-20 bg-[#F2F8FF] min-h-screen">
+    <div className="bg-[#F2F8FF] min-h-screen">
       <Navbar />
       <AboutHero />
       <WhoWeAre />

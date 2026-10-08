@@ -41,11 +41,11 @@ export default function YahaAboutSection() {
             </div>
 
             {/* Paragraphs */}
-            <div className="space-y-4 text-slate-700 text-base sm:text-lg leading-relaxed text-justify pt-2">
-              <p className="font-medium text-[#0A1A3B]">
+            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-justify pt-2">
+              <p className="font-medium text-[#4B5563]">
                 Sowitech Engineering works in association with YAHA Water Systems to integrate Hybrid Zen Media Filtration Technology into selected water treatment and water reuse applications. Designed for efficient and practical filtration, the technology can support applications where reduced water wastage, compact treatment requirements, and simplified operation are important.
               </p>
-              <p className="text-slate-600">
+              <p className="text-[#4B5563]">
                 Sowitech Engineering evaluates Hybrid Zen as part of the overall treatment design and integrates it based on the project&apos;s water characteristics, required treatment quality, space, and operational requirements.
               </p>
             </div>

@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { projectsDatabase } from '../../data/projectsData';
 import ProjectDetailClient from './ProjectDetailClient';
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(projectsDatabase).map((id) => ({
     id,

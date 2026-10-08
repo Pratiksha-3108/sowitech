@@ -29,37 +29,37 @@ const customEase = [0.16, 1, 0.3, 1] as const;
 
 const whyContactItems = [
   {
-    icon: User,
+    iconSrc: '/assets/Expert Consultation (1).png',
     title: 'Expert Consultation',
     desc: 'Direct access to experienced water treatment specialists for site evaluations & system design.',
     tag: 'Technical Guidance',
   },
   {
-    icon: Droplets,
+    iconSrc: '/assets/Customized Water Treatment Solutions (1).png',
     title: 'Customized Water Treatment Solutions',
     desc: 'Bespoke plant configurations engineered for your specific industrial raw water & effluent profile.',
     tag: 'Custom Engineered',
   },
   {
-    icon: Layers,
+    iconSrc: '/assets/WTP & TTP Design.png',
     title: 'WTP & TTP Design',
     desc: 'High-efficiency Water Treatment Plant and Tertiary Treatment Plant engineering.',
     tag: 'Plant Engineering',
   },
   {
-    icon: Recycle,
+    iconSrc: '/assets/Water Recycling Planning.png',
     title: 'Water Recycling Planning',
     desc: 'Strategic closed-loop zero liquid discharge (ZLD) and water recovery architecture.',
     tag: 'Circular Economy',
   },
   {
-    icon: BarChart3,
+    iconSrc: '/assets/BOT Project Evaluation.png',
     title: 'BOT Project Evaluation',
     desc: 'Zero CapEx Build-Operate-Transfer model evaluation for minimal financial burden.',
     tag: 'Financing Model',
   },
   {
-    icon: Wrench,
+    iconSrc: '/assets/Project Support & Maintenance.png',
     title: 'Project Support & Maintenance',
     desc: 'Reliable long-term operational assistance, spare parts, and preventive maintenance support.',
     tag: '24/7 Assistance',
@@ -81,13 +81,84 @@ export default function ContactHero() {
     company: '',
     email: '',
     phone: '',
-    service: 'Water Audit',
+    service: 'Select service',
+    industry: 'Select industry',
+    capacity: '',
     message: '',
   });
 
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+
+  const validateField = (field: string, value: string) => {
+    let err = '';
+    if (field === 'name') {
+      if (!value.trim()) err = 'Full name is required';
+      else if (!/^[a-zA-Z\s'.-]+$/.test(value.trim()) || value.trim().length < 2) {
+        err = 'Please enter a valid full name (letters only)';
+      }
+    } else if (field === 'company') {
+      if (!value.trim()) err = 'Company name is required';
+      else if (value.trim().length < 2) err = 'Company name must be at least 2 characters';
+    } else if (field === 'email') {
+      if (!value.trim()) err = 'Email address is required';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
+        err = 'Please enter a valid email address';
+      }
+    } else if (field === 'phone') {
+      const cleanDigits = value.replace(/\D/g, '');
+      if (!value.trim()) err = 'Phone number is required';
+      else if (!/^[6-9]\d{9}$/.test(cleanDigits)) {
+        err = 'Please enter a valid 10-digit mobile number';
+      }
+    } else if (field === 'service') {
+      if (!value || value === 'Select service') err = 'Please select what you are looking for';
+    } else if (field === 'industry') {
+      if (!value || value === 'Select industry') err = 'Please select an industry / application';
+    } else if (field === 'message') {
+      if (!value.trim()) err = 'Please tell us about your requirement';
+      else if (value.trim().length < 10) {
+        err = 'Please enter at least 10 characters detailing your requirement';
+      }
+    }
+    return err;
+  };
+
+  const validateAll = () => {
+    const newErrors: { [key: string]: string } = {};
+    const newTouched: { [key: string]: boolean } = {};
+    
+    ['name', 'company', 'email', 'phone', 'service', 'industry', 'message'].forEach((field) => {
+      newTouched[field] = true;
+      const err = validateField(field, (formData as any)[field]);
+      if (err) newErrors[field] = err;
+    });
+
+    setTouched(newTouched);
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (field: string, value: string) => {
+    const updatedForm = { ...formData, [field]: value };
+    setFormData(updatedForm);
+    if (touched[field] || errors[field]) {
+      const fieldError = validateField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: fieldError }));
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const fieldError = validateField(field, (formData as any)[field]);
+    setErrors((prev) => ({ ...prev, [field]: fieldError }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    if (validateAll()) {
+      setFormSubmitted(true);
+    }
   };
 
   const scrollToForm = () => {
@@ -129,7 +200,7 @@ export default function ContactHero() {
         </div>
 
         {/* Content Container matching HeroSection height layout */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-center pt-28 pb-20 min-h-screen font-geist">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-center pt-32 sm:pt-36 pb-20 min-h-screen font-geist">
           <div className="max-w-4xl">
             {/* Accessible SEO Heading */}
             <h1 className="sr-only">Contact Water Treatment Plant Company | Sowitech Engineering</h1>
@@ -164,14 +235,7 @@ export default function ContactHero() {
 
           {/* 3x2 Grid Matching Uploaded UI Mockup */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              'Expert Consultation',
-              'Customized Water Treatment Solutions',
-              'WTP & TTP Design',
-              'Water Recycling Planning',
-              'BOT Project Evaluation',
-              'Project Support & Maintenance',
-            ].map((title, idx) => (
+            {whyContactItems.map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 15 }}
@@ -181,12 +245,18 @@ export default function ContactHero() {
                 className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-3.5 flex items-center gap-4 border border-slate-100"
               >
                 {/* Solid Blue Square Icon Box */}
-                <div className="w-14 h-14 rounded-lg bg-[#1E56C8] text-white flex items-center justify-center shrink-0 shadow-inner">
-                  <Leaf className="w-7 h-7 text-white stroke-[2.2]" />
+                <div className="w-14 h-14 rounded-lg bg-[#1E56C8] flex items-center justify-center shrink-0 shadow-inner p-2.5">
+                  <Image
+                    src={item.iconSrc}
+                    alt={item.title}
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 object-contain brightness-0 invert"
+                  />
                 </div>
                 {/* Title */}
                 <h3 className="text-sm sm:text-base font-extrabold text-[#0A1A3B] leading-snug">
-                  {title}
+                  {item.title}
                 </h3>
               </motion.div>
             ))}
@@ -298,7 +368,7 @@ export default function ContactHero() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
                     {/* Row 1: Full Name & Company Name */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
@@ -307,12 +377,21 @@ export default function ContactHero() {
                         </label>
                         <input
                           type="text"
-                          required
                           placeholder="Your name"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                          onChange={(e) => handleChange('name', e.target.value)}
+                          onBlur={() => handleBlur('name')}
+                          className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                            touched.name && errors.name
+                              ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                              : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                          }`}
                         />
+                        {touched.name && errors.name && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.name}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -321,12 +400,21 @@ export default function ContactHero() {
                         </label>
                         <input
                           type="text"
-                          required
                           placeholder="Company / Organization"
                           value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                          onChange={(e) => handleChange('company', e.target.value)}
+                          onBlur={() => handleBlur('company')}
+                          className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                            touched.company && errors.company
+                              ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                              : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                          }`}
                         />
+                        {touched.company && errors.company && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.company}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -338,12 +426,21 @@ export default function ContactHero() {
                         </label>
                         <input
                           type="email"
-                          required
                           placeholder="yourname@company.com"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                          onChange={(e) => handleChange('email', e.target.value)}
+                          onBlur={() => handleBlur('email')}
+                          className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                            touched.email && errors.email
+                              ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                              : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                          }`}
                         />
+                        {touched.email && errors.email && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -356,13 +453,22 @@ export default function ContactHero() {
                           </select>
                           <input
                             type="tel"
-                            required
                             placeholder="98765 43210"
                             value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="flex-1 px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                            onChange={(e) => handleChange('phone', e.target.value)}
+                            onBlur={() => handleBlur('phone')}
+                            className={`flex-1 px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                              touched.phone && errors.phone
+                                ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                                : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                            }`}
                           />
                         </div>
+                        {touched.phone && errors.phone && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.phone}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -374,8 +480,13 @@ export default function ContactHero() {
                         </label>
                         <select
                           value={formData.service}
-                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                          onChange={(e) => handleChange('service', e.target.value)}
+                          onBlur={() => handleBlur('service')}
+                          className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                            touched.service && errors.service
+                              ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                              : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                          }`}
                         >
                           <option value="Select service">Select service</option>
                           <option value="Water Audit">Request a Water Audit</option>
@@ -384,14 +495,26 @@ export default function ContactHero() {
                           <option value="STP Upgrade">STP Upgrade / Recycling</option>
                           <option value="BOT Model">BOT Model Project</option>
                         </select>
+                        {touched.service && errors.service && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.service}
+                          </p>
+                        )}
                       </div>
 
                       <div>
                         <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Industry / Application
+                          Industry / Application *
                         </label>
                         <select
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
+                          value={formData.industry}
+                          onChange={(e) => handleChange('industry', e.target.value)}
+                          onBlur={() => handleBlur('industry')}
+                          className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all ${
+                            touched.industry && errors.industry
+                              ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                              : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                          }`}
                         >
                           <option value="Select industry">Select industry</option>
                           <option value="Textile">Textile & Apparel</option>
@@ -403,6 +526,11 @@ export default function ContactHero() {
                           <option value="Municipal">Municipal / Urban</option>
                           <option value="Other">Other</option>
                         </select>
+                        {touched.industry && errors.industry && (
+                          <p className="text-[11px] font-semibold text-red-500 mt-1">
+                            {errors.industry}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -414,6 +542,8 @@ export default function ContactHero() {
                       <input
                         type="text"
                         placeholder="e.g. 100 KLD / 500 KLD / 1 MLD"
+                        value={formData.capacity}
+                        onChange={(e) => handleChange('capacity', e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all"
                       />
                     </div>
@@ -427,9 +557,19 @@ export default function ContactHero() {
                         rows={3}
                         placeholder="Describe your water treatment, recycling or reuse requirement..."
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20 transition-all resize-none"
+                        onChange={(e) => handleChange('message', e.target.value)}
+                        onBlur={() => handleBlur('message')}
+                        className={`w-full px-4 py-3 rounded-xl border text-slate-900 text-sm focus:outline-none transition-all resize-none ${
+                          touched.message && errors.message
+                            ? 'border-red-500 bg-red-50/20 text-red-900 focus:border-red-600 focus:ring-2 focus:ring-red-500/20'
+                            : 'bg-slate-50/50 border-slate-200 focus:bg-white focus:border-[#0D427D] focus:ring-2 focus:ring-[#0D427D]/20'
+                        }`}
                       ></textarea>
+                      {touched.message && errors.message && (
+                        <p className="text-[11px] font-semibold text-red-500 mt-1">
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
 
                     {/* Submit Button */}

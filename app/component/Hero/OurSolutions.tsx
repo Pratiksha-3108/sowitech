@@ -48,19 +48,6 @@ const solutions = [
     image: '/Images/home/untraflitration-plant.png',
     number: '03',
   },
-  {
-    id: 3,
-    anchorId: 'stp-upgradation',
-    pageHref: '/solutions/stp-upgradation',
-    title: 'STP to TTP Upgradation',
-    subtitle: '',
-    description:
-      'Upgrade your existing STP with advanced tertiary treatment technology to maximize water recovery and improve reuse quality without building a new treatment system.',
-    linkText: 'Learn More',
-    icon: Settings,
-    image: '/assets/mission.jpg',
-    number: '04',
-  },
 ];
 
 const fadeUpVariants: Variants = {
@@ -95,11 +82,11 @@ export default function OurSolutions() {
   return (
     <section
       id="solutions"
-      className="relative w-full scroll-mt-20"
+      className="relative w-full scroll-mt-20 pb-[90px]"
       style={{ backgroundColor: '#F2F8FF' }}
     >
       {/* ── Section header ── */}
-      <div className="text-center px-6 pt-20 pb-10 max-w-3xl mx-auto">
+      <div className="text-center px-6 pt-[90px] pb-10 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -135,14 +122,14 @@ export default function OurSolutions() {
       <div className="flex flex-col lg:flex-row">
 
         {/* LEFT: Sticky image panel — desktop only */}
-        <div className="hidden lg:block sticky top-0 h-screen w-[40%] flex-shrink-0 overflow-hidden flex items-center py-10">
+        <div className="hidden lg:block sticky top-[100px] h-[calc(100vh-120px)] w-[35%] flex-shrink-0">
 
-          {/* Animated image — shifted right with left padding */}
-          <div className="absolute inset-y-[8%] left-8 right-0 overflow-hidden">
+          {/* Animated image — straight edges, reduced width */}
+          <div className="relative w-full h-full ml-6 mr-6 overflow-hidden shadow-lg bg-slate-900">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ scale: 1.12, opacity: 0 }}
+                initial={{ scale: 1.08, opacity: 0 }}
                 animate={{ scale: 1.0, opacity: 1 }}
                 exit={{ scale: 0.96, opacity: 0 }}
                 transition={{ duration: 0.7, ease: customEase }}
@@ -156,7 +143,7 @@ export default function OurSolutions() {
                   className="object-cover object-center"
                 />
                 {/* Colour tint */}
-                <div className="absolute inset-0 bg-[#0D427D]/15" />
+                <div className="absolute inset-0 bg-[#0D427D]/15 pointer-events-none" />
               </motion.div>
             </AnimatePresence>
           </div>

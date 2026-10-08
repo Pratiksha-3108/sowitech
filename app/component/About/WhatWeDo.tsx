@@ -21,25 +21,25 @@ const expertiseItems = [
     number: '03',
     title: 'Water Recycling Systems',
     subtitle: 'Closed-loop recycling solutions to treat and reuse industrial wastewater efficiently.',
-    image: '/Images/home/freshwater.jpg',
+    image: '/Images/benefits/freshwater.jpg',
   },
   {
     number: '04',
     title: 'STP to TTP Upgradation',
     subtitle: 'Upgrading existing Sewage Treatment Plants into high-performance Tertiary Treatment Plants.',
-    image: '/Images/home/circular.png',
+    image: '/Images/benefits/circular.png',
   },
   {
     number: '05',
     title: 'Industrial Water Reuse',
     subtitle: 'Comprehensive water recovery architectures to minimize freshwater reliance across operations.',
-    image: '/Images/home/independence.jpg',
+    image: '/Images/benefits/independence.jpg',
   },
   {
     number: '06',
     title: 'Water Audit & Consultation',
     subtitle: 'On-site evaluations and technical audits to identify water efficiency opportunities and zero-waste pathways.',
-    image: '/Images/home/esg.png',
+    image: '/Images/benefits/esg.png',
   },
 ];
 
@@ -143,7 +143,7 @@ export default function WhatWeDo() {
               </motion.div>
 
               {/* Clipped Circular Image Container */}
-              <div className="relative w-full h-full aspect-square rounded-full overflow-hidden shadow-xl border-4 border-white bg-slate-900 z-10 shrink-0">
+              <div className="relative w-full h-full aspect-square rounded-full overflow-hidden shadow-xl border-4 border-white bg-[#0D427D]/5 z-10 shrink-0">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeItem.number}

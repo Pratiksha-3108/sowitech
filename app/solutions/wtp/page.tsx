@@ -10,16 +10,6 @@ import {
   Phone,
   CheckCircle2,
   Sparkles,
-  ChevronRight,
-  Factory,
-  Car,
-  Server,
-  Hospital,
-  Hotel,
-  GraduationCap,
-  Building,
-  Landmark,
-  Building2,
   ShieldCheck,
   Cpu,
   Layers,
@@ -30,193 +20,119 @@ import {
   Settings,
   Leaf,
   Share2,
+  Plus,
 } from 'lucide-react';
 import Navbar from '../../component/Navbar';
 import Footer from '../../component/Footer';
 
-const whyInvestTabs = [
+const whyInvestItems = [
   {
     id: '01',
-    tabTitle: 'Water Quality Improvement',
-    eyebrow: 'HIGH-PURITY WATER PURIFICATION',
-    cardTitle: 'Improve Industrial Water Quality',
-    desc: 'Convert raw groundwater, surface water, or municipal intake into consistent, high-purity process water tailored for boilers, cooling towers, and industrial manufacturing.',
-    mainImage: '/Images/benefits/freshwater.jpg',
-    floatingImage: '/Images/home/untraflitration-plant.png',
-    badge: 'Pure Water Output',
+    title: 'Water Quality Improvement',
+    desc: 'Convert raw groundwater, surface water, or municipal intake into consistent, high-purity process water tailored for industrial operations.',
   },
   {
     id: '02',
-    tabTitle: 'Reduced Source Dependence',
-    eyebrow: 'RESOURCE INDEPENDENCE',
-    cardTitle: 'Reduce Dependence on Inconsistent Sources',
-    desc: 'Eliminate vulnerability to municipal supply shortages, seasonal water scarcity, and raw water quality fluctuations with self-reliant on-site treatment infrastructure.',
-    mainImage: '/Images/home/untraflitration-plant.png',
-    floatingImage: '/assets/architectural_hero.jpg',
-    badge: 'Resource Independent',
+    title: 'Reduced Source Dependence',
+    desc: 'Eliminate vulnerability to municipal supply shortages, seasonal water scarcity, and raw water quality fluctuations with on-site treatment.',
   },
   {
     id: '03',
-    tabTitle: 'Process-Water Availability',
-    eyebrow: '24/7 CONTINUOUS SUPPLY',
-    cardTitle: 'Maintain Reliable Process-Water Supply',
-    desc: 'Ensure 100% continuous uptime for manufacturing operations with heavy-duty redundant filtration trains engineered for zero unplanned operational downtime.',
-    mainImage: '/assets/architectural_hero.jpg',
-    floatingImage: '/Images/home/yaha_filtration_plant.jpg',
-    badge: '24/7 Continuous Supply',
+    title: 'Process-Water Availability',
+    desc: 'Ensure continuous uptime for manufacturing operations with heavy-duty redundant filtration trains engineered for zero unplanned downtime.',
   },
   {
     id: '04',
-    tabTitle: 'Management Efficiency',
-    eyebrow: 'OPERATIONAL EFFICIENCY',
-    cardTitle: 'Improve Water-Management Efficiency',
-    desc: 'Lower operational expenditure through SCADA telemetry monitoring, automated chemical dosing control, and optimized backwash recovery cycles.',
-    mainImage: '/Images/home/yaha_filtration_plant.jpg',
-    floatingImage: '/Images/home/hybrid_zen_technology.jpg',
-    badge: 'SCADA Automated',
+    title: 'Management Efficiency',
+    desc: 'Lower operational expenditure through SCADA telemetry monitoring, automated chemical dosing control, and optimized backwash recovery.',
   },
   {
     id: '05',
-    tabTitle: 'Facility Water Reuse',
-    eyebrow: 'CLOSED-LOOP RECYCLING',
-    cardTitle: 'Prepare Facilities for Water Reuse & ESG',
-    desc: 'Position your facility for closed-loop wastewater recycling and Zero Liquid Discharge (ZLD) readiness, reducing total freshwater procurement costs and meeting ESG targets.',
-    mainImage: '/Images/benefits/esg.png',
-    floatingImage: '/assets/mission.jpg',
-    badge: 'Closed-Loop ZLD',
+    title: 'Facility Water Reuse',
+    desc: 'Position your facility for closed-loop wastewater recycling and Zero Liquid Discharge (ZLD) readiness, reducing freshwater costs.',
   },
 ];
 
 function WhyInvestInteractiveSection() {
-  const [activeTab, setActiveTab] = useState(0);
-  const current = whyInvestTabs[activeTab];
+  const [activeItem, setActiveItem] = useState(1); // Default active item '02' matching reference layout
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 85%', 'center center'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    damping: 26,
+    stiffness: 75,
+  });
+
+  // Height animates from 54px (half-cut initial view) to 105px (full height reveal) on scroll
+  const numberHeight = useTransform(smoothProgress, [0, 1], ['54px', '105px']);
 
   return (
-    <section className="w-full font-geist py-16 sm:py-24 bg-gradient-to-b from-[#F4F7FC] via-slate-50 to-[#EBF2FA] relative overflow-hidden border-t border-b border-slate-200/80">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+    <section
+      ref={sectionRef}
+      className="w-full font-geist py-20 sm:py-28 bg-white border-t border-b border-slate-200/80 overflow-hidden"
+    >
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Header Block */}
+        <div className="max-w-3xl mb-14 sm:mb-18">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15] mb-4">
+            Why Invest in a <br className="hidden sm:inline" />
+            <span className="text-[#0D427D]">Water Treatment Plant?</span>
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-2xl">
+            A properly designed treatment system helps manage water resources effectively, mitigates raw water risks, and maintains reliable process-water availability across industrial operations.
+          </p>
+        </div>
 
-          {/* ── LEFT COLUMN (5 Cols): Dual Overlapping Image Cards with Dynamic Transition ── */}
-          <div className="lg:col-span-5 relative pb-8 pr-4 sm:pr-6 lg:pr-8">
-            {/* Large Main Background Image Card */}
-            <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-100">
-              <AnimatePresence mode="wait">
+        {/* 5-Column Horizontal Stepper Grid with Half-Cut Initial State to Full Scroll Reveal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-6 lg:gap-8 items-start">
+          {whyInvestItems.map((item, index) => {
+            const isActive = activeItem === index;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: customEase }}
+                onClick={() => setActiveItem(index)}
+                onMouseEnter={() => setActiveItem(index)}
+                className="cursor-pointer group flex flex-col justify-start transition-all duration-300"
+              >
+                {/* Large Cut-out Stylized Digit Container — Initially Half-Cut (54px), Expands to Full Height (105px) on Scroll */}
                 <motion.div
-                  key={current.mainImage}
-                  initial={{ opacity: 0, scale: 1.08 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.5, ease: customEase }}
-                  className="absolute inset-0"
+                  style={{ height: numberHeight }}
+                  className="relative overflow-hidden select-none transition-all duration-300"
                 >
-                  <Image
-                    src={current.mainImage}
-                    alt={current.cardTitle}
-                    fill
-                    priority
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D2244]/50 via-transparent to-transparent pointer-events-none" />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Smaller Overlapping Floating Image Card at Bottom-Right */}
-            <div className="absolute bottom-0 right-0 sm:-right-4 w-52 sm:w-64 aspect-square rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(13,34,68,0.35)] border-4 border-white bg-slate-900 z-20">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.floatingImage}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5, ease: customEase }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={current.floatingImage}
-                    alt="Floating preview"
-                    fill
-                    className="object-cover object-center"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* ── RIGHT COLUMN (7 Cols): Headline, Lead Paragraph & Tabbed Detail Card ── */}
-          <div className="lg:col-span-7 space-y-6">
-
-            {/* Main Headline */}
-            <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0D2244] tracking-tight leading-[1.15] mb-3">
-                Why Invest in a <br />
-                <span className="text-[#0D427D]">Water Treatment Plant?</span>
-              </h2>
-
-              {/* Lead Subtitle Paragraph */}
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-2xl">
-                A properly designed treatment system helps manage water resources effectively, mitigates raw water risks, and maintains reliable process-water availability across industrial operations.
-              </p>
-            </div>
-
-            {/* Interactive Tabs Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start pt-2">
-              {/* Left List of Numbered Tabs (5 Cols) */}
-              <div className="sm:col-span-5 flex flex-col space-y-2.5">
-                {whyInvestTabs.map((item, index) => {
-                  const isActive = activeTab === index;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => setActiveTab(index)}
-                      className={`w-full text-left px-4 py-3.5 rounded-2xl transition-all duration-300 flex items-center gap-3 ${isActive
-                        ? 'bg-sky-50/90 border border-sky-200/90 shadow-sm text-[#0D427D]'
-                        : 'bg-white/70 hover:bg-white text-slate-500 hover:text-slate-900 border border-slate-200/50'
-                        }`}
-                    >
-                      <span className={`text-xs font-extrabold px-2.5 py-1 rounded-lg ${isActive ? 'bg-[#0D427D] text-white shadow-xs' : 'bg-slate-100 text-slate-400'}`}>
-                        {item.id}
-                      </span>
-                      <span className={`text-xs sm:text-sm font-bold tracking-tight line-clamp-1 ${isActive ? 'text-[#0D2244]' : 'text-slate-600'}`}>
-                        {item.tabTitle}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Right Detail Card (7 Cols) */}
-              <div className="sm:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100/90 flex flex-col justify-between min-h-[240px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={current.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
+                  <div
+                    className={`text-6xl sm:text-7xl lg:text-[96px] font-black tracking-tighter leading-none transition-colors duration-300 ${isActive
+                      ? 'text-[#2563EB] scale-105 origin-left'
+                      : 'text-slate-300 group-hover:text-slate-400'
+                      }`}
                   >
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#0D427D] mb-2.5 block font-geist">
-                      {current.eyebrow}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#0D2244] leading-snug mb-3 font-geist">
-                      {current.cardTitle}
-                    </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
-                      {current.desc}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
+                    {item.id}
+                  </div>
+                </motion.div>
 
-                <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0D427D]">
-                  <span>Key Value Driver {current.id} of 05</span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                </div>
-              </div>
-            </div>
+                {/* Title */}
+                <h3
+                  className={`text-base sm:text-lg font-extrabold mt-4 mb-2 leading-snug transition-colors duration-300 ${isActive ? 'text-[#0D2244]' : 'text-slate-900 group-hover:text-[#0D427D]'
+                    }`}
+                >
+                  {item.title}
+                </h3>
 
-          </div>
-
+                {/* Description */}
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-normal">
+                  {item.desc}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>
@@ -340,7 +256,7 @@ function EngineeredApproachSection() {
   return (
     <section className="w-full py-20 sm:py-32 bg-gradient-to-b from-white via-slate-50/50 to-white border-t border-slate-200/80 overflow-hidden font-geist">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        
+
         {/* Top 2-Column Header Block matching reference layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -374,7 +290,7 @@ function EngineeredApproachSection() {
           ref={timelineRef}
           className="relative max-w-4xl mx-auto"
         >
-          
+
           {/* Central Vertical Line (Visible on Desktop) */}
           <div className="absolute left-1/2 top-4 bottom-8 -translate-x-1/2 w-[2px] bg-slate-200 hidden md:block" />
 
@@ -396,7 +312,7 @@ function EngineeredApproachSection() {
                     <stop offset="1" stopColor="#FFFFFF" stopOpacity="0.05" />
                   </linearGradient>
                 </defs>
-                
+
                 {/* Main Droplet Body */}
                 <path
                   d="M16 2 C16 2 4 17 4 26 C4 32.6274 9.37258 38 16 38 C22.6274 38 28 32.6274 28 26 C28 17 16 2 16 2Z"
@@ -404,7 +320,7 @@ function EngineeredApproachSection() {
                   stroke="#38BDF8"
                   strokeWidth="0.75"
                 />
-                
+
                 {/* Inner Light Reflection */}
                 <ellipse cx="11.5" cy="22" rx="3.5" ry="7" transform="rotate(-25 11.5 22)" fill="url(#drop_highlight)" />
                 <circle cx="21" cy="30" r="1.5" fill="#FFFFFF" fillOpacity="0.7" />
@@ -431,7 +347,7 @@ function EngineeredApproachSection() {
 
                   {/* Column content */}
                   <div className={`relative ${isEven ? 'md:col-start-2 md:text-left' : 'md:col-start-1 md:text-left'} px-2 py-4`}>
-                    
+
                     {/* Exact Slashed Zero Background SVG Number */}
                     <SlashedOutlineNumber id={step.id} />
 
@@ -439,7 +355,7 @@ function EngineeredApproachSection() {
                       <h4 className="text-xl sm:text-2xl font-bold text-[#0D2244] mb-3 leading-snug">
                         {step.title}
                       </h4>
-                      
+
                       <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-md font-normal">
                         {step.desc}
                       </p>
@@ -489,100 +405,227 @@ const wtpBenefits = [
   },
 ];
 
-/* ── Section 5 — Industries List ── */
-const industriesList = [
-  { name: 'Manufacturing', icon: Factory, note: 'Process water for production lines & assembly.' },
-  { name: 'Automotive', icon: Car, note: 'Paint shop rinsing & zero-particulate water.' },
-  { name: 'Data Centres', icon: Server, note: 'Chilled loop & precision server cooling.' },
-  { name: 'Hospitals', icon: Hospital, note: 'Sterile grade & medical equipment water.' },
-  { name: 'Hotels', icon: Hotel, note: 'Laundry, HVAC chillers & soft guest water.' },
-  { name: 'Educational Institutions', icon: GraduationCap, note: 'Campus-wide utility & lab water.' },
-  { name: 'Residential Societies', icon: Building, note: 'Centralized soft water & iron removal.' },
-  { name: 'Municipal Corporations', icon: Landmark, note: 'High-capacity urban distribution plants.' },
-  { name: 'MIDC & Industrial Parks', icon: Building2, note: 'Common utility water treatment infrastructure.' },
-];
+
+/* ── Section 6 — Why Choose Sowitech Engineering (Reference Layout Matching Device Screenshot) ── */
+function WhyChooseInteractiveSection() {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
+  const chooseCards = [
+    {
+      id: '01',
+      category: 'PRACTICAL ENGINEERING EXPERTISE',
+      title: 'Practical Engineering Expertise',
+      desc: 'We develop solutions around actual water requirements rather than applying a one-size-fits-all approach. Our engineering team designs custom systems tailored to your facility parameters.',
+      mainImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
+      insetImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+      id: '02',
+      category: 'FULL LIFECYCLE MANAGEMENT',
+      title: 'End-to-End Project Support',
+      desc: 'Our involvement extends from initial system planning and design through turn-key installation, commissioning, operations, and long-term maintenance support.',
+      mainImage: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1000&auto=format&fit=crop',
+      insetImage: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+      id: '03',
+      category: 'RECYCLING & REUSE',
+      title: 'Sustainable Water Management',
+      desc: 'Our holistic approach combines advanced water treatment with opportunities for recycling, non-potable reuse, and responsible long-term water consumption.',
+      mainImage: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1000&auto=format&fit=crop',
+      insetImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+      id: '04',
+      category: 'ADVANCED FILTRATION TECHNOLOGY',
+      title: 'Technology Partnership with YAHA',
+      desc: 'Selected treatment applications can integrate advanced filtration technology from YAHA Water Systems as part of the overall high-efficiency solution.',
+      mainImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
+      insetImage: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=600&auto=format&fit=crop',
+    },
+  ];
+
+  return (
+    <section className="relative w-full py-20 md:py-28 font-geist bg-[#F8FAFC] border-t border-slate-200/80 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+        
+        {/* 2-Column Grid: Left Images + Right Column containing (Headline + Paragraph + Tabs & Card) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-start">
+          
+          {/* Left Column: Overlapping Images Showcase (Sticky, Increased Height) */}
+          <div className="lg:col-span-5 relative lg:sticky lg:top-28 self-start">
+            <div className="relative max-w-xs sm:max-w-sm lg:max-w-[360px] mx-auto lg:mx-0">
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.35 }}
+                  className="relative"
+                >
+                  {/* Main Background Image Card (Increased Height) */}
+                  <div className="relative rounded-[28px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] aspect-[4/4.9] border border-slate-200/60 bg-[#E2E8F0]">
+                    <Image
+                      src={chooseCards[activeTab].mainImage}
+                      alt={chooseCards[activeTab].title}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+
+                  {/* Overlapping Floating Inset Image Card */}
+                  <div className="absolute -bottom-6 -right-5 sm:-bottom-8 sm:-right-8 w-36 sm:w-44 aspect-[3/4.2] rounded-[22px] overflow-hidden border-[5px] border-white shadow-[0_25px_50px_rgba(0,0,0,0.22)] z-20 transition-transform duration-300 hover:scale-105 bg-slate-800">
+                    <Image
+                      src={chooseCards[activeTab].insetImage}
+                      alt={`${chooseCards[activeTab].title} Detail`}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+            </div>
+          </div>
+
+          {/* Right Column: Headline, Paragraph, and Interactive Tabs + Detail Box (Shifted Left) */}
+          <div className="lg:col-span-7 space-y-6 pt-1 lg:pt-3 lg:-ml-4 xl:-ml-6">
+            
+            {/* Dual-Tone Headline */}
+            <div>
+              <h2 className="font-geist text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0B132B] tracking-tight leading-[1.14]">
+                Why Choose Sowitech Engineering. <br />
+                <span className="text-[#64748B] font-bold">Guaranteed Water Reliability.</span>
+              </h2>
+
+              <p className="font-geist text-[#475569] text-sm sm:text-[15px] leading-relaxed font-normal mt-3.5 max-w-xl">
+                Empowering your facility with tailored water treatment solutions designed to drive operational efficiency, lower freshwater dependency, and ensure long-term reliability.
+              </p>
+            </div>
+
+            {/* Interactive Tabs + Detail Box Row */}
+            <div className="pt-2 flex flex-col xl:flex-row gap-5 items-stretch">
+              
+              {/* Left Side Tab Items List (Width expanded so all 4 titles fit on 1 single line) */}
+              <div className="w-full xl:w-[48%] space-y-2 flex flex-col justify-center">
+                {chooseCards.map((item, idx) => {
+                  const isActive = activeTab === idx;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveTab(idx)}
+                      className={`w-full text-left px-4 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 flex items-center gap-3 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#E8F2FD] border border-[#BBE0FF]/80 text-[#0F172A] shadow-xs'
+                          : 'bg-transparent text-[#64748B] hover:text-[#0F172A] hover:bg-slate-200/50'
+                      }`}
+                    >
+                      <span
+                        className={`text-xs sm:text-sm font-bold transition-colors ${
+                          isActive ? 'text-[#3B82F6]' : 'text-[#94A3B8]'
+                        }`}
+                      >
+                        {item.id}
+                      </span>
+                      <span
+                        className={`text-xs sm:text-[13px] font-bold leading-none whitespace-nowrap ${
+                          isActive ? 'text-[#0F172A]' : 'text-[#64748B]'
+                        }`}
+                      >
+                        {item.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Right Side Floating White Detail Card */}
+              <div className="w-full xl:w-[52%] min-h-[220px] flex">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full bg-white rounded-[24px] p-7 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col justify-center relative overflow-hidden"
+                  >
+                    <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#3B82F6] mb-3 block font-geist">
+                      {chooseCards[activeTab].category}
+                    </span>
+
+                    <h3 className="font-geist text-lg sm:text-xl font-extrabold text-[#0F172A] mb-3 leading-snug">
+                      {chooseCards[activeTab].title}
+                    </h3>
+
+                    <p className="font-geist text-[#64748B] text-xs sm:text-sm leading-relaxed font-normal">
+                      {chooseCards[activeTab].desc}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function WaterTreatmentPlantsPage() {
   const [activeStep, setActiveStep] = useState(0);
-  const [activeIndustryIndex, setActiveIndustryIndex] = useState(0);
 
   return (
-    <div className="pt-20 bg-[#F8FAFC] min-h-screen font-geist text-slate-900">
+    <div className="bg-[#F8FAFC] min-h-screen font-geist text-slate-900">
       <Navbar />
 
-      {/* ── SECTION 1 — HERO (REMOVED BOTTOM FEATURE LINE + INCREASED HERO HEIGHT) ── */}
-      <section className="relative w-full min-h-[95vh] flex flex-col justify-center py-28 md:py-36 lg:py-44 bg-gradient-to-br from-[#0D427D] via-[#0A3260] to-[#0A2540] text-white overflow-hidden font-geist">
-
-        {/* Bright Vibrant Background Image */}
-        <div className="absolute inset-0 z-0">
+      {/* ── SECTION 1 — HERO (MATCHING OTHER SOLUTION PAGES DESIGN SYSTEM) ── */}
+      <section className="relative w-full pt-32 sm:pt-36 pb-16 md:pb-24 bg-gradient-to-b from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white overflow-hidden font-geist">
+        <div className="absolute inset-0 z-0 opacity-20">
           <Image
-            src="/assets/architectural_hero.jpg"
-            alt="Water Treatment Plant Facility"
+            src="/Images/home/yaha_filtration_plant.jpg"
+            alt="Water Treatment Plants"
             fill
-            className="object-cover object-center opacity-40 scale-105"
+            className="object-cover"
             priority
           />
-          {/* Subtle Blue Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0D427D]/95 via-[#0D427D]/80 to-blue-900/50" />
         </div>
-
-        {/* Ambient Glowing Orbs */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-400/20 rounded-full blur-[120px] pointer-events-none z-0" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-400/15 rounded-full blur-[120px] pointer-events-none z-0" />
-
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10 w-full my-auto">
+        
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: customEase }}
+            transition={{ duration: 0.7, ease: customEase }}
             className="max-w-3xl"
           >
-            {/* Glassmorphic Eyebrow Tag */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-[11px] font-bold uppercase tracking-[0.22em] text-blue-100 mb-5 shadow-md"
-            >
-              <span className="w-2 h-2 rounded-full bg-[#F39A1E] animate-pulse" />
-              <Droplets className="w-3.5 h-3.5 text-blue-200" />
-              <span>WATER TREATMENT PLANTS</span>
-            </motion.div>
 
-            {/* H1 Headline */}
-            <h1 className="font-geist text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.12] mb-5 text-white drop-shadow-md">
-              Engineered for{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-100 to-white">
-                Better Water
-              </span>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-6 text-white">
+              Water Treatment Plants <span className="text-blue-300">(WTP)</span>
             </h1>
 
-            {/* Description */}
-            <p className="font-geist text-blue-50 text-base sm:text-lg leading-relaxed mb-8 font-normal max-w-2xl drop-shadow-sm">
-              Reliable water treatment solutions for industrial and commercial applications.
+            <p className="text-slate-200 text-lg sm:text-xl leading-relaxed mb-8 font-normal">
+              Engineered water treatment solutions designed to provide reliable, process-ready water tailored to your specific industrial, commercial, and utility requirements.
             </p>
 
-            {/* Premium CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2.5 bg-[#F39A1E] hover:bg-[#e08b12] text-white font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase"
+                className="inline-flex items-center gap-2 bg-[#F39A1E] hover:bg-[#e08b12] text-white font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-sm tracking-wider uppercase"
               >
-                <span>Request a Water Audit</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                Request WTP Proposal
+                <ArrowRight className="w-4 h-4" />
               </Link>
-
-              <a
-                href="#solution-overview"
-                className="group inline-flex items-center gap-2.5 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-full border border-white/30 backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all duration-300 text-xs sm:text-sm tracking-wide shadow-md"
-              >
-                <span>Explore WTP</span>
-                <ArrowRight className="w-4 h-4 text-blue-200 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
             </div>
           </motion.div>
         </div>
-
       </section>
 
       {/* ── SECTION 2 — WHAT IS A WATER TREATMENT PLANT? ── */}
@@ -699,360 +742,8 @@ export default function WaterTreatmentPlantsPage() {
       {/* ── SECTION 4 — WHY INVEST IN A WATER TREATMENT PLANT? ── */}
       <WhyInvestInteractiveSection />
 
-      {/* ── SECTION 5 — INDUSTRIES WE SERVE ── */}
-      <section className="py-20 md:py-28 bg-[#0D2244] text-white relative overflow-hidden font-geist">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-
-          <div className="max-w-3xl mb-14">
-            <span className="text-xs font-extrabold uppercase tracking-[0.25em] text-blue-300 mb-3 block">
-              SECTOR APPLICATION
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-white mb-4">
-              Water Treatment Across Diverse Industries
-            </h2>
-            <p className="text-slate-300 text-base leading-relaxed">
-              Different industries have different water requirements. Sowitech Engineering develops treatment solutions around the specific needs of each facility.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-            {/* Left Column: Animated Vertical Industry List */}
-            <div className="lg:col-span-5 space-y-2.5">
-              {industriesList.map((ind, idx) => {
-                const IndIcon = ind.icon;
-                const active = idx === activeIndustryIndex;
-                return (
-                  <div
-                    key={ind.name}
-                    onClick={() => setActiveIndustryIndex(idx)}
-                    className={`cursor-pointer p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border ${active
-                      ? 'bg-white text-[#0D2244] border-white shadow-xl scale-[1.02]'
-                      : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/10'
-                      }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${active ? 'bg-[#0D427D] text-white' : 'bg-white/10 text-blue-200'
-                        }`}>
-                        <IndIcon className="w-5 h-5" />
-                      </div>
-                      <span className="text-sm font-extrabold">{ind.name}</span>
-                    </div>
-
-                    <ChevronRight className={`w-4 h-4 transition-transform ${active ? 'text-[#0D427D] translate-x-1' : 'text-white/40'
-                      }`} />
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Right Column: Large Industrial Image Showcase + Selected Detail Box */}
-            <div className="lg:col-span-7 relative">
-              <div className="relative aspect-[4/3] sm:aspect-[1.1] rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-slate-900">
-                <Image
-                  src="/assets/architectural_hero.jpg"
-                  alt="Industrial Water Facility"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A3B] via-transparent to-black/30" />
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={industriesList[activeIndustryIndex].name}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-6 rounded-2xl text-[#0D2244] shadow-2xl border border-white/20"
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-xl bg-[#0D427D] text-white flex items-center justify-center font-bold shrink-0">
-                        {React.createElement(industriesList[activeIndustryIndex].icon, { className: 'w-5 h-5' })}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-extrabold leading-tight">
-                          {industriesList[activeIndustryIndex].name}
-                        </h3>
-                        <span className="text-[11px] font-bold text-[#0D427D] uppercase tracking-wider">
-                          Tailored WTP Solution
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {industriesList[activeIndustryIndex].note}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── SECTION 6 — WHY CHOOSE SOWITECH ENGINEERING (EXACT UI REPLICA) ── */}
-      <section className="relative w-full py-20 md:py-28 lg:py-32 overflow-hidden font-geist bg-slate-50 border-t border-slate-200/80">
-
-        {/* Scenic Water & Mountain Landscape Background with Soft Overlay */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/assets/architectural_hero.jpg"
-            alt="Sowitech Water Landscape"
-            fill
-            className="object-cover object-center opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-blue-50/75 to-slate-50/95 backdrop-blur-[1px]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-
-          {/* Section Header with Circle Badge 6 */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: customEase }}
-            className="mb-14 sm:mb-20 max-w-4xl"
-          >
-            {/* Top Row: Badge + Eyebrow */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0D2244] text-white flex items-center justify-center font-black text-sm sm:text-base shadow-md shrink-0">
-                6
-              </div>
-              <span className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-[#0D427D]">
-                WHY CHOOSE SOWITECH ENGINEERING?
-              </span>
-            </div>
-
-          </motion.div>
-
-          {/* 4 Floating Glassmorphic Cards Grid */}
-          <div className="relative mt-6">
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-5 relative z-10">
-
-              {/* Card Data Array Map for Clean & Dynamic Framer Motion Animations */}
-              {[
-                {
-                  title: 'Practical Engineering Expertise',
-                  subtitle: 'We develop solutions around actual water requirements rather than applying a one-size-fits-all approach.',
-                  icon: Settings,
-                  color: 'text-[#0D427D]',
-                  delay: 0.1,
-                },
-                {
-                  title: 'End-to-End Project Support',
-                  subtitle: 'Our involvement can extend from system planning and design through installation, commissioning, and maintenance support.',
-                  icon: ShieldCheck,
-                  color: 'text-[#0D427D]',
-                  delay: 0.2,
-                },
-                {
-                  title: 'Sustainable Water Management',
-                  subtitle: 'Our approach combines treatment with opportunities for recycling, reuse, and responsible water consumption.',
-                  icon: Leaf,
-                  color: 'text-teal-600',
-                  delay: 0.3,
-                },
-                {
-                  title: 'Technology Partnership with YAHA',
-                  subtitle: (
-                    <>
-                      Selected treatment applications can integrate technology from{' '}
-                      <Link
-                        href="/yaha-technology"
-                        className="text-[#0D427D] font-bold underline underline-offset-2 hover:text-[#F39A1E] transition-colors"
-                      >
-                        YAHA Water Systems
-                      </Link>{' '}
-                      as part of the overall solution.
-                    </>
-                  ),
-                  icon: Share2,
-                  color: 'text-[#0D427D]',
-                  delay: 0.4,
-                },
-              ].map((card, idx) => {
-                const IconComponent = card.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 35, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{
-                      duration: 0.5,
-                      delay: card.delay,
-                      ease: [0.215, 0.61, 0.355, 1],
-                      type: 'spring',
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    className="group relative bg-white/90 backdrop-blur-md border border-slate-200/60 shadow-lg rounded-2xl p-5 sm:p-6 text-center flex flex-col justify-between hover:shadow-xl hover:bg-white transition-all duration-300 overflow-hidden"
-                  >
-                    {/* Glassmorphic Diagonal Hover Shimmer Effect */}
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none z-0" />
-
-                    <div className="relative z-10">
-                      {/* Top Circle Icon */}
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 6 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-md shadow-blue-500/10 flex items-center justify-center mx-auto mb-3 relative z-10 transition-all duration-300"
-                      >
-                        <IconComponent className={`w-6 h-6 sm:w-7 sm:h-7 ${card.color} stroke-[1.8] group-hover:scale-110 transition-transform duration-300`} />
-                      </motion.div>
-
-                      {/* Title */}
-                      <h3 className="text-base sm:text-lg font-extrabold text-[#0D2244] mb-2 leading-snug group-hover:text-[#0D427D] transition-colors duration-300">
-                        {card.title}
-                      </h3>
-
-                      {/* Subtitle */}
-                      <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-normal">
-                        {card.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Sleek 2px Bottom-Only Accent Border Line on Hover */}
-                    <div className="w-0 group-hover:w-full h-[2px] bg-[#0D427D] absolute bottom-0 left-0 transition-all duration-500 rounded-b-2xl" />
-                  </motion.div>
-                );
-              })}
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── SECTION 7 — RELATED SOLUTIONS + FINAL CTA ── */}
-      <section className="py-20 md:py-28 bg-white border-t border-slate-200 font-geist">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-
-          {/* Related Pathways */}
-          <div className="mb-20">
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#0D427D] mb-3 block">
-                WATER REUSE PATHWAYS
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0D2244] mb-4">
-                From Water Treatment to Water Reuse
-              </h2>
-              <p className="text-slate-600 text-base leading-relaxed">
-                Water treatment can be the first step toward a broader water-management strategy. Where appropriate, treated wastewater can undergo further treatment through Tertiary Treatment Plants (TTP) and be recovered for suitable non-potable applications.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-              {/* TTP Card */}
-              <Link
-                href="/solutions/ttp"
-                className="group bg-[#F8FAFC] p-7 rounded-3xl border border-slate-200 hover:border-[#0D427D] hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-bold text-[#0D427D] uppercase tracking-wider block mb-2">
-                    Advanced Polishing
-                  </span>
-                  <h3 className="text-xl font-extrabold text-[#0D2244] group-hover:text-[#0D427D] transition-colors mb-3">
-                    Tertiary Treatment Plants (TTP)
-                  </h3>
-                  <p className="text-slate-600 text-xs leading-relaxed mb-6">
-                    Further treatment of STP water for suitable non-potable reuse across cooling towers and utilities.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#0D427D] group-hover:text-[#F39A1E]">
-                  <span>Explore TTP</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-
-              {/* Water Recycling Card */}
-              <Link
-                href="/solutions/water-recycling"
-                className="group bg-[#F8FAFC] p-7 rounded-3xl border border-slate-200 hover:border-[#0D427D] hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-bold text-[#0D427D] uppercase tracking-wider block mb-2">
-                    Closed-Loop Recovery
-                  </span>
-                  <h3 className="text-xl font-extrabold text-[#0D2244] group-hover:text-[#0D427D] transition-colors mb-3">
-                    Water Recycling Solutions
-                  </h3>
-                  <p className="text-slate-600 text-xs leading-relaxed mb-6">
-                    Recover and reuse treated wastewater within your facility to lower freshwater procurement.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#0D427D] group-hover:text-[#F39A1E]">
-                  <span>Explore Water Recycling</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-
-              {/* STP to TTP Upgradation Card */}
-              <Link
-                href="/solutions/stp-upgradation"
-                className="group bg-[#F8FAFC] p-7 rounded-3xl border border-slate-200 hover:border-[#0D427D] hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-bold text-[#0D427D] uppercase tracking-wider block mb-2">
-                    Plant Retrofit
-                  </span>
-                  <h3 className="text-xl font-extrabold text-[#0D2244] group-hover:text-[#0D427D] transition-colors mb-3">
-                    STP to TTP Upgradation
-                  </h3>
-                  <p className="text-slate-600 text-xs leading-relaxed mb-6">
-                    Enhance an existing STP with additional treatment where better-quality water is required for reuse.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#0D427D] group-hover:text-[#F39A1E]">
-                  <span>Explore STP Upgradation</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-
-            </div>
-          </div>
-
-          {/* Final CTA Banner */}
-          <div className="bg-gradient-to-br from-[#0D2244] via-[#0D427D] to-[#0A1A3B] rounded-3xl p-8 sm:p-12 lg:p-16 text-white text-center shadow-2xl relative overflow-hidden">
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-200 mb-3 block">
-                START YOUR AUDIT
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-6">
-                Build a More Reliable Water System
-              </h2>
-              <p className="text-slate-200 text-base sm:text-lg leading-relaxed mb-8">
-                Understand your current water requirements, evaluate your treatment needs, and identify opportunities for better water management.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 bg-[#F39A1E] hover:bg-[#e08b12] text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-sm tracking-wider uppercase"
-                >
-                  Request a Water Audit
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                <a
-                  href="tel:+919730014264"
-                  className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-bold px-7 py-4 rounded-full border border-white/20 transition-all text-sm tracking-wide"
-                >
-                  <Phone className="w-4 h-4 text-[#F39A1E]" />
-                  <span>+91 97300 14264</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* ── SECTION 6 — WHY CHOOSE SOWITECH ENGINEERING (INTERACTIVE 2X2 PLUS CARDS) ── */}
+      <WhyChooseInteractiveSection />
 
       <Footer />
     </div>

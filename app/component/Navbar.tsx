@@ -32,7 +32,8 @@ const navLinks = [
   { name: "About", href: "/about" },
   { name: "Solutions", href: "/solutions", hasDropdown: true },
   { name: "YAHA Technology", href: "/yaha-technology" },
-  { name: "Industries", href: "/#industries" },
+  { name: "Projects", href: "/projects" },
+  { name: "Industries", href: "/industries" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -45,8 +46,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Stay transparent floating glass throughout hero section, turn solid white after passing hero (~400px or 70% viewport height)
+      const heroThreshold = Math.min(window.innerHeight * 0.7, 450);
+      setIsScrolled(window.scrollY > heroThreshold);
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -59,31 +63,40 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled
-        ? "shadow-[0_2px_20px_rgba(13,66,125,0.10)] py-2 border-b border-slate-100"
-        : "py-3 border-b border-slate-100/60"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        isScrolled
+          ? "w-full pt-0 px-0"
+          : "w-full pt-3 sm:pt-4 px-3 sm:px-6 lg:px-10"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
+      <div
+        className={`max-w-7xl mx-auto flex items-center justify-between gap-6 transition-all duration-500 ${
+          isScrolled
+            ? "w-full max-w-full bg-white/95 backdrop-blur-lg border-b border-slate-100 shadow-[0_4px_25px_rgba(13,66,125,0.12)] px-4 sm:px-6 lg:px-10 py-2.5 rounded-none"
+            : "bg-slate-900/40 backdrop-blur-md border border-white/20 shadow-2xl px-5 sm:px-7 py-2.5 sm:py-3 rounded-full"
+        }`}
+      >
 
         {/* ── Logo ── */}
         <a
           href="/"
-          className="flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.03]"
+          className="flex items-center shrink-0 py-0.5 pl-1 sm:pl-2 transition-all duration-300 hover:scale-[1.02]"
           aria-label="Sowitech Home"
         >
           <Image
             src="/assets/logo_bgremove.png"
             alt="Sowitech Engineering Pvt. Ltd."
             width={240}
-            height={80}
-            className="h-16 sm:h-20 md:h-22 w-auto object-contain"
+            height={70}
+            className={`h-10 sm:h-11 md:h-12 w-auto object-contain transition-all duration-300 ${
+              !isScrolled ? "brightness-0 invert opacity-95 hover:opacity-100" : ""
+            }`}
             priority
           />
         </a>
 
         {/* ── Desktop Nav Links ── */}
-        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-1 sm:gap-2" aria-label="Main navigation">
           {navLinks.map((link) => {
             const active = isActiveFn(link.href);
 
@@ -97,25 +110,36 @@ const Navbar = () => {
                 >
                   <a
                     href={link.href}
-                    className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg flex items-center gap-1.5 ${active || isSolutionsOpen
-                      ? "text-[#0D427D]"
-                      : "text-[#2d3748] hover:text-[#0D427D]"
-                      }`}
+                    className={`relative px-4 py-2 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-full flex items-center gap-1.5 ${
+                      isScrolled
+                        ? active || isSolutionsOpen
+                          ? "text-[#0D427D]"
+                          : "text-[#2d3748] hover:text-[#0D427D]"
+                        : active || isSolutionsOpen
+                        ? "text-sky-300 font-bold"
+                        : "text-white/90 hover:text-white"
+                    }`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${isSolutionsOpen ? "rotate-180 text-[#0D427D]" : "text-slate-400 group-hover:text-[#0D427D]"
-                        }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isSolutionsOpen
+                          ? "rotate-180 " + (isScrolled ? "text-[#0D427D]" : "text-sky-300")
+                          : isScrolled
+                          ? "text-slate-400 group-hover:text-[#0D427D]"
+                          : "text-white/70 group-hover:text-white"
+                      }`}
                     />
 
                     {/* animated orange underline */}
                     <span
-                      className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${active || isSolutionsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                        }`}
+                      className={`absolute bottom-0.5 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
+                        active || isSolutionsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
                     />
                   </a>
 
-                  {/* Dropdown Menu matching uploaded reference design */}
+                  {/* Dropdown Menu */}
                   <AnimatePresence>
                     {isSolutionsOpen && (
                       <motion.div
@@ -123,9 +147,9 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute top-full left-0 mt-1 w-[540px] bg-white rounded-2xl shadow-[0_15px_45px_rgba(13,66,125,0.18)] border border-slate-100 p-0 z-50 overflow-hidden flex flex-row min-h-[200px]"
+                        className="absolute top-full left-0 mt-2 w-[540px] bg-white rounded-2xl shadow-[0_15px_45px_rgba(13,66,125,0.18)] border border-slate-100 p-0 z-50 overflow-hidden flex flex-row min-h-[200px]"
                       >
-                        {/* Left Card: Flush Image (No Padding to Image) */}
+                        {/* Left Card: Flush Image */}
                         <div className="relative w-48 shrink-0 flex flex-col justify-end p-4 bg-slate-900 self-stretch min-h-full">
                           <Image
                             src="/Images/home/yaha_filtration_plant.jpg"
@@ -142,7 +166,7 @@ const Navbar = () => {
                           </div>
                         </div>
 
-                        {/* Right Content: 3 Solutions Layout (2 in line 1, 1 in line 2) - Text Only */}
+                        {/* Right Content: 3 Solutions Layout */}
                         <div className="flex-1 flex flex-col justify-center gap-2.5 p-3.5">
                           {/* Row 1: 2 items in 1 line */}
                           <div className="grid grid-cols-2 gap-2.5">
@@ -186,23 +210,29 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`relative px-4 py-2.5 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-lg ${active
-                  ? "text-[#0D427D]"
-                  : "text-[#2d3748] hover:text-[#0D427D]"
-                  }`}
+                className={`relative px-4 py-2 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap group rounded-full ${
+                  isScrolled
+                    ? active
+                      ? "text-[#0D427D]"
+                      : "text-[#2d3748] hover:text-[#0D427D]"
+                    : active
+                    ? "text-sky-300 font-bold"
+                    : "text-white/90 hover:text-white"
+                }`}
               >
                 {link.name}
                 {/* animated orange underline */}
                 <span
-                  className={`absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    }`}
+                  className={`absolute bottom-0.5 left-4 right-4 h-[2.5px] rounded-full bg-[#F39A1E] transition-transform duration-200 origin-left ${
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
                 />
               </a>
             );
           })}
         </nav>
 
-        {/* ── Desktop CTA ── */}
+        {/* ── Desktop CTA Button ── */}
         <div className="hidden lg:flex items-center shrink-0">
           <a
             href="/contact"
@@ -219,20 +249,25 @@ const Navbar = () => {
         {/* ── Mobile Hamburger ── */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden p-2 text-[#173247] hover:bg-slate-100 rounded-xl transition-colors"
+          className={`lg:hidden p-2.5 rounded-full transition-colors ${
+            isScrolled
+              ? "text-[#173247] hover:bg-slate-100"
+              : "text-white hover:bg-white/20"
+          }`}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* ── Mobile Dropdown ── */}
+      {/* ── Mobile Dropdown Menu ── */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 mt-2 ${
+          isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+        }`}
       >
-        <div className="bg-white border-t border-slate-100 px-6 py-5 shadow-xl space-y-1">
+        <div className="bg-white border-t border-slate-100 px-6 py-5 shadow-2xl space-y-1 rounded-2xl mx-3">
           {navLinks.map((link) => {
             const active = isActiveFn(link.href);
 
@@ -243,8 +278,9 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex-1 py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${active ? "text-[#0D427D] bg-blue-50" : "text-[#2d3748] hover:text-[#0D427D]"
-                        }`}
+                      className={`flex-1 py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
+                        active ? "text-[#0D427D] bg-blue-50" : "text-[#2d3748] hover:text-[#0D427D]"
+                      }`}
                     >
                       {link.name}
                     </a>
@@ -283,10 +319,11 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`flex items-center justify-between py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${active
-                  ? "text-[#0D427D] bg-blue-50"
-                  : "text-[#2d3748] hover:text-[#0D427D] hover:bg-slate-50"
-                  }`}
+                className={`flex items-center justify-between py-3 px-3 rounded-xl text-[15px] font-semibold transition-colors ${
+                  active
+                    ? "text-[#0D427D] bg-blue-50"
+                    : "text-[#2d3748] hover:text-[#0D427D] hover:bg-slate-50"
+                }`}
               >
                 <span>{link.name}</span>
                 {active && <span className="w-2 h-2 rounded-full bg-[#F39A1E]" />}

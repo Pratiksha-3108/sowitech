@@ -39,24 +39,15 @@ const solutions = [
     image: '/Images/home/untraflitration-plant.png',
     badge: 'Closed-Loop Reuse',
   },
-  {
-    id: 'stp-upgradation',
-    title: 'STP to TTP Upgradation',
-    description: 'Upgrade your existing Sewage Treatment Plant (STP) with modern Hybrid Zen Media Filtration technology to double water recovery quality without building new civil structures.',
-    href: '/solutions/stp-upgradation',
-    icon: Settings,
-    image: '/assets/mission.jpg',
-    badge: 'Plant Retrofitting',
-  },
 ];
 
 export default function SolutionsMainPage() {
   return (
-    <div className="pt-20 bg-slate-50 min-h-screen font-sans">
+    <div className="bg-slate-50 min-h-screen font-sans">
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white text-center">
+      <section className="relative w-full pt-32 sm:pt-36 pb-16 md:pb-24 bg-gradient-to-b from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white text-center">
         <div className="max-w-4xl mx-auto px-6">
           <span className="text-xs font-extrabold uppercase tracking-[0.25em] text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block mb-4">
             Engineered Water Solutions

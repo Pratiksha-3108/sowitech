@@ -54,7 +54,7 @@ const BenefitsWaterRecycling = () => {
           </div>
 
           {/* LEFT - scrolling list */}
-          <div className="flex-1 flex flex-col py-16 lg:py-24">
+          <div className="flex-1 flex flex-col pt-16 lg:pt-24 pb-0">
             {benefits.map((b) => (
               <motion.div
                 key={b.id}

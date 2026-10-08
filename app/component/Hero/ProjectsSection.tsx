@@ -3,183 +3,184 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
-const projectsData = [
+interface ProjectCardData {
+  id: string;
+  title: string;
+  client: string;
+  location: string;
+  category: string;
+  spec: string;
+  specSub?: string;
+  image: string;
+  badge: string;
+  link: string;
+}
+
+const FEATURED_PROJECTS: ProjectCardData[] = [
   {
     id: 'ntpc-dadri-tertiary',
-    tag: 'Tertiary Treatment',
-    location: 'NTPC Dadri, Nagpur',
     title: '4 MLD AFM Tertiary Treatment Plant',
-    capacity: '4 MLD Capacity',
-    highlightLabel: 'Turbidity Achieved',
-    highlightValue: '3.59 NTU',
-    guarantee: 'Guaranteed < 5 NTU',
+    client: 'NTPC Limited',
+    location: 'Dadri, Nagpur, India',
+    category: 'Tertiary Treatment',
+    spec: '4 MLD Capacity',
+    specSub: 'Turbidity <3.59 NTU',
     image: '/Images/home/yaha_filtration_plant.jpg',
-    detailsLink: '/projects/ntpc-dadri-tertiary',
+    badge: 'Tertiary',
+    link: '/projects/ntpc-dadri-tertiary',
   },
   {
     id: 'sail-visl-drinking',
-    tag: 'Drinking Water',
-    location: 'SAIL – VISL Plant, Bhadravathi',
-    title: '2 MGD Drinking Water System',
-    capacity: '2 MGD Discharge',
-    highlightLabel: 'Turbidity Achieved',
-    highlightValue: '0.98 NTU',
-    guarantee: 'High Clarity Standards',
+    title: '2 MGD Drinking Water Treatment System',
+    client: 'SAIL – VISL Plant',
+    location: 'Bhadravathi, Karnataka',
+    category: 'Drinking Water WTP',
+    spec: '2 MGD Discharge',
+    specSub: 'Turbidity 0.98 NTU',
     image: '/assets/architectural_hero.jpg',
-    detailsLink: '/solutions/wtp',
+    badge: 'Drinking WTP',
+    link: '/projects/visl-bhadravathi-drinking-water',
   },
   {
     id: 'bhalki-municipal-wtp',
-    tag: 'Municipal WTP',
+    title: '20 MLD Self-Cleaning Water Treatment',
+    client: 'Municipal WTP',
     location: 'Bhalki, Karnataka',
-    title: '20 MLD Self-Cleaning Water Plant',
-    capacity: '20 MLD Self-Cleaning',
-    highlightLabel: 'Turbidity Output',
-    highlightValue: '< 0.5 NTU',
-    guarantee: '23 Villages Served',
+    category: 'Municipal WTP',
+    spec: '20 MLD Capacity',
+    specSub: '23 Villages Served',
     image: '/Images/home/untraflitration-plant.png',
-    detailsLink: '/solutions/wtp',
+    badge: 'Municipal',
+    link: '/projects/bhalki-municipal-wtp',
   },
   {
     id: 'al-jazeera-export',
-    tag: 'Export Project',
-    location: 'Al Jazeera Steel, Oman',
     title: 'Steel Plant Cooling Water Recirculation',
-    capacity: 'Recirculation System',
-    highlightLabel: 'Outlet TSS',
-    highlightValue: '< 10 ppm',
-    guarantee: 'Inlet TSS: 130 ppm',
+    client: 'Al Jazeera Steel',
+    location: 'Sohar, Oman',
+    category: 'Export Project',
+    spec: 'High TSS Removal',
+    specSub: 'Outlet TSS <10 ppm',
     image: '/Images/home/hybrid_zen_plant_plain.jpg',
-    detailsLink: '/solutions/water-recycling',
+    badge: 'Export',
+    link: '/projects/al-jazeera-export',
   },
   {
-    id: 'karnataka-drinking-water',
-    tag: 'Drinking Water',
-    location: 'Karnataka State',
+    id: 'karnataka-drinking-wtp',
     title: 'Municipal Drinking Water Installation',
-    capacity: '20 MLD Design Discharge',
-    highlightLabel: 'Turbidity Output',
-    highlightValue: '< 1 NTU',
-    guarantee: 'State Municipal Supply',
-    image: '/assets/mission.jpg',
-    detailsLink: '/solutions/wtp',
+    client: 'State Municipal Board',
+    location: 'Karnataka, India',
+    category: 'Drinking Water WTP',
+    spec: '20 MLD Discharge',
+    specSub: 'Turbidity <1 NTU',
+    image: '/Images/home/hybrid_zen_technology.jpg',
+    badge: 'Drinking WTP',
+    link: '/projects/karnataka-drinking-wtp',
   },
   {
     id: 'india-municipal-membrane',
-    tag: 'Municipal WTP',
+    title: '20 MLD Microza Membrane WTP',
+    client: 'Water Supply Board',
     location: 'India',
-    title: '20 MLD Membrane-Based Treatment',
-    capacity: 'Zen Media + Triton BR',
-    highlightLabel: 'Filtration Tech',
-    highlightValue: 'Microza MF',
-    guarantee: 'Advanced Membrane WTP',
-    image: '/Images/home/hybrid_zen_technology.jpg',
-    detailsLink: '/solutions/wtp',
+    category: 'Membrane WTP',
+    spec: '20 MLD Design',
+    specSub: 'Triton BR + Microza',
+    image: '/Images/home/yaha_filtration_plant.jpg',
+    badge: 'Membrane',
+    link: '/projects/india-municipal-membrane',
   },
 ];
 
 export default function ProjectsSection() {
   return (
-    <section className="w-full bg-[#F2F8FF] py-16 md:py-24 font-geist relative overflow-hidden border-t border-[#D0E2F7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-
-        {/* Top Header Row with Title & View All Link */}
-        <div className="flex flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-[#D0E2F7]">
-          <div>
-            <div className="mb-2">
+    <section className="w-full bg-slate-50 pt-[90px] pb-16 sm:pb-20 px-4 sm:px-6 lg:px-12 font-sans border-b border-slate-200/60">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* ================= SECTION HEADER ================= */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12">
+          <div className="space-y-2 max-w-2xl">
+            {/* Category Tagline / Eyebrow */}
+            <div className="mb-1">
               <span className="text-xs font-bold tracking-[0.2em] text-[#0D427D] uppercase font-geist">
-                FEATURED PROJECTS
+                TURNKEY SOLUTIONS
               </span>
             </div>
-            <h2 className="font-geist text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A1A3B] tracking-tight leading-tight">
-              Proven Track Record of <span className="text-[#0D427D]">Success</span>
+
+            {/* Main Headline */}
+            <h2 className="font-geist text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A1A3B] tracking-tight leading-tight">
+              Top Featured <span className="text-[#0D427D]">Projects</span>
             </h2>
+
+            {/* Subtitle Description */}
+            <p className="font-geist text-slate-600 text-sm sm:text-base leading-relaxed font-normal pt-1">
+              Engineered water treatment, tertiary recycling, and municipal infrastructure projects executed across industrial and municipal sectors.
+            </p>
           </div>
 
           <Link
-            href="/solutions"
-            className="inline-flex items-center gap-2 text-[#0D427D] hover:text-[#0A3463] font-bold text-sm sm:text-base group whitespace-nowrap transition-colors duration-200"
+            href="/projects"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#0D427D] text-[#0D427D] bg-white font-semibold text-xs hover:bg-[#0D427D] hover:text-white transition-colors duration-300 shrink-0 self-start md:self-end"
           >
-            <span>See all Projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+            <span>See All Projects</span>
+            <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* 3-Column Grid matching reference design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectsData.map((project, index) => (
-            <motion.div
+        {/* ================= 6 CARD GRID (3 COLUMNS x 2 ROWS) ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {FEATURED_PROJECTS.map((project) => (
+            <Link
               key={project.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.07,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 flex flex-row"
+              href={project.link}
+              className="group bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-4 shadow-xs hover:shadow-xl hover:border-[#0D427D]/40 transition-all duration-300 flex flex-row items-stretch gap-4"
             >
-              {/* Left Side Image (0 Padding, No Zoom) */}
-              <div className="relative w-36 sm:w-40 md:w-44 flex-shrink-0 bg-slate-100 min-h-full">
+              {/* Left Side Square Image Container */}
+              <div className="relative w-5/12 sm:w-1/2 aspect-square rounded-xl overflow-hidden shrink-0 bg-slate-100 border border-slate-100">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 40vw, 20vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
 
-              {/* Right Side Content & Metrics */}
-              <div className="flex flex-col justify-between flex-grow min-w-0 p-3.5 sm:p-4">
+              {/* Right Side Info Area */}
+              <div className="flex-1 flex flex-col justify-between min-w-0 py-0.5">
                 <div>
-                  {/* Category Tag & Location */}
-                  <div className="flex items-center gap-1.5 text-xs font-bold mb-1.5 truncate">
-                    <span className="text-[#0D427D] font-bold text-[11px]">{project.tag}</span>
-                    <span className="text-slate-300">•</span>
-                    <span className="text-slate-500 font-medium truncate text-[11px]">{project.location}</span>
-                  </div>
-
-                  {/* Project Title */}
-                  <h3 className="text-[#0D427D] font-bold text-sm sm:text-base leading-snug line-clamp-2 mb-2.5">
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2 group-hover:text-[#0D427D] transition-colors">
                     {project.title}
                   </h3>
 
-                  {/* Highlights / Performance Metric */}
-                  <div className="space-y-1 mb-2.5 text-xs">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="font-medium text-slate-500">{project.highlightLabel}:</span>
-                      <span className="font-bold text-[#0D427D]">{project.highlightValue}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-[11px] text-slate-500 font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0D427D] flex-shrink-0" />
-                      <span className="truncate">{project.guarantee}</span>
-                    </div>
-                  </div>
+                  {/* Client & Location */}
+                  <p className="text-xs text-slate-500 font-medium mt-1 truncate">
+                    {project.client}
+                  </p>
+                  <p className="text-xs text-slate-400 font-normal truncate">
+                    {project.location}
+                  </p>
+
+                  {/* Category Tag */}
+                  <p className="text-xs text-slate-600 font-semibold mt-2">
+                    {project.category}
+                  </p>
+
+                  {/* Spec / Capacity Highlight */}
+                  <p className="text-xs sm:text-sm font-extrabold text-[#0D427D] mt-0.5">
+                    {project.spec}
+                  </p>
                 </div>
 
-                {/* Action Area: Initial text link morphs into slide-up & zoom button on hover */}
-                <div className="pt-2 mt-auto border-t border-slate-100 relative overflow-hidden h-10 flex items-center">
-                  <Link href={project.detailsLink} className="w-full relative h-full flex items-center">
-                    {/* Initial State: Text Link */}
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0D427D] transition-all duration-300 ease-out group-hover:-translate-y-full group-hover:opacity-0">
-                      <span>View Details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-
-                    {/* Hover State: Solid Button Sliding Up & Zooming */}
-                    <span className="absolute inset-0 inline-flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg bg-[#0D427D] hover:bg-[#0A3463] text-white text-xs font-bold shadow-md transition-all duration-300 ease-out transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 hover:scale-105">
-                      <span>View Details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </Link>
+                {/* Bottom Action Link */}
+                <div className="pt-2 flex items-center gap-1 text-xs font-bold text-slate-600 group-hover:text-[#0D427D] transition-colors">
+                  <span>Get Project Details</span>
+                  <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </div>
-
               </div>
-            </motion.div>
+            </Link>
           ))}
         </div>
 

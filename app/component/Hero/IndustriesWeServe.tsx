@@ -19,55 +19,82 @@ const industriesData: IndustryCard[] = [
     id: 1,
     title: 'Manufacturing',
     description:
-      'Reliable treatment and recycling systems engineered for high-volume industrial operations.',
+      'Evaluate treatment and recycling opportunities based on water-use requirements across production and utilities.',
     image:
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+    href: '/industries',
   },
   {
     id: 2,
     title: 'Automotive',
     description:
-      'Advanced water treatment and reuse solutions for manufacturing and process applications.',
+      'Treatment and reuse systems suited to automotive manufacturing and process utility requirements.',
     image:
       'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+    href: '/industries',
   },
   {
     id: 3,
     title: 'Data Centres',
     description:
-      'High-purity water solutions for uninterrupted operations and energy efficiency.',
+      'Reliable water management and cooling-related treatment and recycling for mission-critical operations.',
     image:
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+    href: '/industries',
   },
   {
     id: 4,
     title: 'Hospitals',
     description:
-      'Safe, reliable and compliant water systems for better healthcare environments.',
+      'Responsible water treatment and non-potable water-reuse opportunities for healthcare facilities.',
     image:
       'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+    href: '/industries',
   },
   {
     id: 5,
-    title: 'Chemical Processing',
+    title: 'Hotels',
     description:
-      'Specialty process water conditioning, chemical effluent recovery, and ZLD systems.',
+      'Water recycling and reuse to reduce dependence on freshwater across guest facilities and utilities.',
     image:
-      'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
+    href: '/industries',
   },
   {
     id: 6,
-    title: 'Food & Beverages',
+    title: 'Educational Institutions',
     description:
-      'Sanitary grade water treatment and compliant high-BOD wastewater digestion.',
+      'Treatment and recycling systems designed around educational campus infrastructure and reuse.',
     image:
-      'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?q=80&w=800&auto=format&fit=crop',
-    href: '/contact',
+      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop',
+    href: '/industries',
+  },
+  {
+    id: 7,
+    title: 'Residential Societies',
+    description:
+      'Process treated wastewater for non-potable flushing, gardening, and common-area requirements.',
+    image:
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop',
+    href: '/industries',
+  },
+  {
+    id: 8,
+    title: 'Municipal Corporations',
+    description:
+      'Support civic water-treatment and water-reuse requirements based on project scope.',
+    image:
+      'https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=800&auto=format&fit=crop',
+    href: '/industries',
+  },
+  {
+    id: 9,
+    title: 'MIDC & Industrial Parks',
+    description:
+      'Substantial water treatment, recycling, and reuse solutions for industrial estates and clusters.',
+    image:
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
+    href: '/industries',
   },
 ];
 
@@ -80,7 +107,7 @@ export default function IndustriesWeServe() {
   return (
     <section
       id="industries"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-[#F2F7FC] overflow-hidden scroll-mt-20 font-sans"
+      className="relative w-full pt-[90px] pb-16 sm:pb-20 lg:pb-24 bg-[#F2F7FC] overflow-hidden scroll-mt-20 font-sans"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
@@ -134,7 +161,7 @@ export default function IndustriesWeServe() {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <Link
-                  href="/contact"
+                  href="/industries"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#0D427D] text-[#0D427D] bg-white font-semibold text-xs hover:bg-[#0D427D] hover:text-white transition-colors duration-300 group"
                 >
                   <span>Explore All Industries</span>

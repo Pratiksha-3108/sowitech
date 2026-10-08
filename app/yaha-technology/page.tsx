@@ -18,7 +18,7 @@ export default function YahaTechnologyPage() {
   return (
     <div className="bg-white min-h-screen font-sans antialiased text-[#0A1A3B]">
       <Navbar />
-      <main className="pt-20">
+      <main>
         <YahaHero />
         <YahaAboutSection />
         <YahaAdvantagesSection />

@@ -31,7 +31,7 @@ const AboutSowitech = () => {
         style={{ background: 'linear-gradient(90deg, #0D427D 0%, #1e88e5 50%, #0D427D 100%)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-[90px] pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* ── LEFT: Editorial Image ── */}
