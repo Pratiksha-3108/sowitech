@@ -34,17 +34,11 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* Balanced base dark overlay */}
-        <div className="absolute inset-0 bg-[#07132B]/45 pointer-events-none" />
+        {/* Light subtle overlay - keeps the plant image bright & clearly visible */}
+        <div className="absolute inset-0 bg-black/15 pointer-events-none" />
 
-        {/* Smooth vertical dark gradient for clear contrast & deep aesthetic */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#071320]/70 via-[#071320]/35 to-[#071320]/80 pointer-events-none" />
-
-        {/* Subtle center focus vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(7,19,43,0.55)_100%)] pointer-events-none" />
-
-        {/* Bottom smooth fade to section below */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#071320] to-transparent pointer-events-none" />
+        {/* Soft gradient: light top for navbar readability, transparent middle, subtle bottom transition */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#071320]/40 pointer-events-none" />
       </div>
 
       {/* ── Content Container (Centered & Grand) ── */}
