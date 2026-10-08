@@ -722,46 +722,63 @@ export default function TertiaryTreatmentPlantsPage() {
       {/* ── SECTION 5 — BENEFITS OF TERTIARY TREATMENT PLANTS ── */}
       <TtpBenefitsInteractiveSection />
 
-      {/* ── SECTION 6 — ADVANCED FILTRATION TECHNOLOGY (YAHA PARTNERSHIP) ── */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white relative overflow-hidden font-geist">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      {/* ── SECTION 6 — ADVANCED FILTRATION TECHNOLOGY (OVERLAPPING TCS-STYLE UI) ── */}
+      <section className="py-16 md:py-28 bg-white relative overflow-hidden font-geist">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+          <div className="relative flex flex-col lg:flex-row items-center">
             
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-blue-200 border border-white/15">
-                <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-                ADVANCED FILTRATION TECHNOLOGY
-              </div>
+            {/* Left Big Image (Slides in from Left) */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              className="w-full lg:w-[78%] h-[380px] sm:h-[460px] lg:h-[540px] rounded-none overflow-hidden relative shadow-lg shrink-0"
+            >
+              <Image
+                src="/Images/home/yaha_filtration_plant.jpg"
+                alt="YAHA Water Systems Technology"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+            </motion.div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                Technology Partnership with <span className="text-blue-300">YAHA Water Systems</span>
+            {/* Right Overlapping Card (Slides in from Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
+              className="w-full lg:w-[48%] bg-[#F5F6F8] rounded-none p-6 sm:p-8 lg:p-9 shadow-xl border border-slate-100/80 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-20 space-y-4 -mt-12 lg:mt-0"
+            >
+              
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-500 block font-geist">
+                ADVANCED FILTRATION TECHNOLOGY
+              </span>
+
+              <h2 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold text-[#0B132B] leading-[1.22] tracking-tight font-geist">
+                Technology Partnership with <span className="text-[#0D427D]">YAHA Water Systems</span>
               </h2>
 
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal max-w-2xl">
-                For selected applications, Sowitech Engineering integrates YAHA Water Systems' Hybrid Zen Media Filtration technology into water treatment and tertiary treatment solutions. Designed around efficient filtration, reduced backwash requirements, lower water wastage, and simplified maintenance.
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal font-geist">
+                For selected applications, Sowitech Engineering integrates YAHA Water Systems&apos; Hybrid Zen Media Filtration technology into water treatment and tertiary treatment solutions. Designed around efficient filtration, reduced backwash requirements, lower water wastage, and simplified maintenance.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/yaha-technology"
-                  className="inline-flex items-center gap-2.5 bg-[#F39A1E] hover:bg-[#e08b12] text-white font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase"
+                  className="group inline-flex items-center gap-3 text-[#0B132B] hover:text-[#0D427D] font-bold text-xs sm:text-sm transition-colors"
                 >
-                  <span>Learn More About YAHA Water Technology</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="leading-snug font-geist">Learn More About YAHA Water Technology</span>
+                  <span className="w-9 h-9 rounded-full bg-black group-hover:bg-[#0D427D] text-white flex items-center justify-center transition-colors shadow-md shrink-0">
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               </div>
-            </div>
 
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20">
-                <Image
-                  src="/Images/home/yaha_filtration_plant.jpg"
-                  alt="YAHA Water Systems Technology"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>

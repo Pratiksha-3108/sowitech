@@ -124,20 +124,18 @@ function RecyclingBenefitsInteractiveSection() {
                   className="relative overflow-hidden select-none transition-all duration-300"
                 >
                   <div
-                    className={`text-6xl sm:text-7xl lg:text-[96px] font-black tracking-tighter leading-none transition-colors duration-300 ${
-                      isActive
+                    className={`text-6xl sm:text-7xl lg:text-[96px] font-black tracking-tighter leading-none transition-colors duration-300 ${isActive
                         ? 'text-[#2563EB] scale-105 origin-left'
                         : 'text-slate-300 group-hover:text-slate-400'
-                    }`}
+                      }`}
                   >
                     {item.id}
                   </div>
                 </motion.div>
 
                 <h3
-                  className={`text-base sm:text-lg font-extrabold mt-4 mb-2 leading-snug transition-colors duration-300 ${
-                    isActive ? 'text-[#0D2244]' : 'text-slate-900 group-hover:text-[#0D427D]'
-                  }`}
+                  className={`text-base sm:text-lg font-extrabold mt-4 mb-2 leading-snug transition-colors duration-300 ${isActive ? 'text-[#0D2244]' : 'text-slate-900 group-hover:text-[#0D427D]'
+                    }`}
                 >
                   {item.title}
                 </h3>
@@ -422,14 +420,14 @@ function WhyChooseRecyclingInteractiveSection() {
   return (
     <section className="relative w-full py-20 md:py-28 font-geist bg-[#F8FAFC] border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        
+
         {/* 2-Column Grid: Left Images + Right Column containing (Headline + Paragraph + Tabs & Card) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-start">
-          
+
           {/* Left Column: Overlapping Images Showcase (Sticky) */}
           <div className="lg:col-span-5 relative lg:sticky lg:top-28 self-start">
             <div className="relative max-w-xs sm:max-w-sm lg:max-w-[360px] mx-auto lg:mx-0">
-              
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -467,7 +465,7 @@ function WhyChooseRecyclingInteractiveSection() {
 
           {/* Right Column: Headline, Paragraph, and Interactive Tabs + Detail Box */}
           <div className="lg:col-span-7 space-y-6 pt-1 lg:pt-3 lg:-ml-4 xl:-ml-6">
-            
+
             <div>
               <h2 className="font-geist text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0B132B] tracking-tight leading-[1.14]">
                 Why Choose Sowitech Engineering. <br />
@@ -480,7 +478,7 @@ function WhyChooseRecyclingInteractiveSection() {
             </div>
 
             <div className="pt-2 flex flex-col xl:flex-row gap-5 items-stretch">
-              
+
               <div className="w-full xl:w-[48%] space-y-2 flex flex-col justify-center">
                 {chooseCards.map((item, idx) => {
                   const isActive = activeTab === idx;
@@ -488,23 +486,20 @@ function WhyChooseRecyclingInteractiveSection() {
                     <button
                       key={item.id}
                       onClick={() => setActiveTab(idx)}
-                      className={`w-full text-left px-4 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 flex items-center gap-3 cursor-pointer ${
-                        isActive
+                      className={`w-full text-left px-4 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 flex items-center gap-3 cursor-pointer ${isActive
                           ? 'bg-[#E8F2FD] border border-[#BBE0FF]/80 text-[#0F172A] shadow-xs'
                           : 'bg-transparent text-[#64748B] hover:text-[#0F172A] hover:bg-slate-200/50'
-                      }`}
+                        }`}
                     >
                       <span
-                        className={`text-xs sm:text-sm font-bold transition-colors ${
-                          isActive ? 'text-[#3B82F6]' : 'text-[#94A3B8]'
-                        }`}
+                        className={`text-xs sm:text-sm font-bold transition-colors ${isActive ? 'text-[#3B82F6]' : 'text-[#94A3B8]'
+                          }`}
                       >
                         {item.id}
                       </span>
                       <span
-                        className={`text-xs sm:text-[13px] font-bold leading-none whitespace-nowrap ${
-                          isActive ? 'text-[#0F172A]' : 'text-[#64748B]'
-                        }`}
+                        className={`text-xs sm:text-[13px] font-bold leading-none whitespace-nowrap ${isActive ? 'text-[#0F172A]' : 'text-[#64748B]'
+                          }`}
                       >
                         {item.title}
                       </span>
@@ -551,32 +546,32 @@ function WhyChooseRecyclingInteractiveSection() {
 const processFlowSteps = [
   {
     id: '01',
-    title: 'Collection & Pre-Treatment',
-    desc: 'Remove large solids, oils, and raw wastewater contaminants.',
+    title: 'Wastewater',
+    desc: 'Collection and intake of raw facility wastewater.',
     image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop',
   },
   {
     id: '02',
-    title: 'Primary & Secondary Treatment',
-    desc: 'Biological and physical purification process.',
+    title: 'Treatment',
+    desc: 'Primary and secondary purification process.',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
   },
   {
     id: '03',
-    title: 'Advanced Filtration',
-    desc: 'Polishing filtration for higher water quality.',
+    title: 'Further Treatment / Filtration',
+    desc: 'Advanced tertiary and polishing filtration.',
     image: '/Images/home/yaha_filtration_plant.jpg',
   },
   {
     id: '04',
-    title: 'Disinfection & Recovery',
-    desc: 'Ensure safe and stable recovered water specifications.',
+    title: 'Recovered Water',
+    desc: 'Disinfection and reuse specification compliance.',
     image: '/Images/home/untraflitration-plant.png',
   },
   {
     id: '05',
-    title: 'Clean Water for Reuse',
-    desc: 'Returned for cooling, flushing, utilities, and industrial reuse.',
+    title: 'Non-Potable Reuse',
+    desc: 'Returned for cooling, flushing, and utilities.',
     image: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=600&auto=format&fit=crop',
   },
 ];
@@ -585,15 +580,14 @@ function HowWaterRecyclingWorksProcessSection() {
   return (
     <section id="solution-overview" className="w-full py-20 sm:py-28 bg-[#F4F8FC] border-t border-b border-slate-200/80 font-geist overflow-hidden scroll-mt-20">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12">
-        
+
         {/* Header Block */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-block px-4 py-1.5 rounded-full bg-[#E0EEFD] border border-[#BFDBFE] text-[#1E5FA8] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
             OUR PROCESS
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0C2340] tracking-tight leading-[1.15] mb-4">
-            From Waste to Worth: <br className="hidden sm:inline" />
-            <span className="text-[#0D427D]">How Water Recycling Works</span>
+            How Water <span className="text-[#0D427D]">Recycling Works</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-2xl">
             Water recycling involves treating wastewater to the quality required for a specific reuse application and returning recovered water to facility operations.
@@ -648,18 +642,7 @@ function HowWaterRecyclingWorksProcessSection() {
             ))}
           </div>
 
-          {/* Strategy Flow Banner Bar at bottom */}
-          <div className="mt-14 p-5 rounded-2xl bg-white border border-blue-100/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-xs sm:text-sm font-bold text-[#0D2244] flex-wrap">
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0D427D] bg-blue-50 px-3 py-1 rounded-md border border-blue-100">
-                Strategy Flow
-              </span>
-              <span>Wastewater → Treatment → Further Treatment/Filtration → Recovered Water → Non-Potable Reuse</span>
-            </div>
-            <div className="text-xs text-slate-500 font-medium whitespace-nowrap">
-              * The exact configuration depends on wastewater characteristics and intended application.
-            </div>
-          </div>
+
         </div>
 
       </div>
@@ -824,46 +807,63 @@ export default function WaterRecyclingSolutionsPage() {
         </div>
       </section>
 
-      {/* ── SECTION 7 — TECHNOLOGY-DRIVEN WATER RECYCLING (YAHA PARTNERSHIP) ── */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-[#0D2244] via-[#0D427D] to-[#0A1A3B] text-white relative overflow-hidden font-geist">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      {/* ── SECTION 7 — TECHNOLOGY-DRIVEN WATER RECYCLING (OVERLAPPING TCS-STYLE UI) ── */}
+      <section className="py-16 md:py-28 bg-white relative overflow-hidden font-geist">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+          <div className="relative flex flex-col lg:flex-row items-center">
             
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-blue-200 border border-white/15">
-                <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-                ADVANCED FILTRATION TECHNOLOGY
-              </div>
+            {/* Left Big Image (Slides in from Left) */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              className="w-full lg:w-[78%] h-[380px] sm:h-[460px] lg:h-[540px] rounded-none overflow-hidden relative shadow-lg shrink-0"
+            >
+              <Image
+                src="/Images/home/yaha_filtration_plant.jpg"
+                alt="YAHA Water Systems Technology"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+            </motion.div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                Technology-Driven Water Recycling with <span className="text-blue-300">YAHA Water Systems</span>
+            {/* Right Overlapping Card (Slides in from Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
+              className="w-full lg:w-[48%] bg-[#F5F6F8] rounded-none p-6 sm:p-8 lg:p-9 shadow-xl border border-slate-100/80 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-20 space-y-4 -mt-12 lg:mt-0"
+            >
+              
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-500 block font-geist">
+                ADVANCED FILTRATION TECHNOLOGY
+              </span>
+
+              <h2 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold text-[#0B132B] leading-[1.22] tracking-tight font-geist">
+                Technology-Driven Water Recycling with <span className="text-[#0D427D]">YAHA Water Systems</span>
               </h2>
 
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal max-w-2xl">
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal font-geist">
                 For selected applications, Sowitech Engineering works with YAHA Water Systems and integrates its Hybrid Zen Media Filtration technology into suitable treatment and recycling systems. This technology focuses on efficient filtration, lower backwash requirements, reduced water wastage, and simplified maintenance.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/yaha-technology"
-                  className="inline-flex items-center gap-2.5 bg-[#F39A1E] hover:bg-[#e08b12] text-white font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase"
+                  className="group inline-flex items-center gap-3 text-[#0B132B] hover:text-[#0D427D] font-bold text-xs sm:text-sm transition-colors"
                 >
-                  <span>Learn More About YAHA Water Technology</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="leading-snug font-geist">Learn More About YAHA Water Technology</span>
+                  <span className="w-9 h-9 rounded-full bg-black group-hover:bg-[#0D427D] text-white flex items-center justify-center transition-colors shadow-md shrink-0">
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               </div>
-            </div>
 
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20">
-                <Image
-                  src="/Images/home/yaha_filtration_plant.jpg"
-                  alt="YAHA Water Systems Technology"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
