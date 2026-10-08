@@ -35,7 +35,7 @@ const HeroSection = () => {
         </motion.div>
 
         {/* Light subtle overlay - keeps the plant image bright & clearly visible */}
-        <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
         {/* Soft gradient: light top for navbar readability, transparent middle, subtle bottom transition */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#071320]/40 pointer-events-none" />
